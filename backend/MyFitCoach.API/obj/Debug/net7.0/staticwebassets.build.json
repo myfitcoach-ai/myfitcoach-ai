@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "j90XET7wuBT0ylHikxDAd25NywkWOrgNGysLZPclAMM=",
+  "Source": "MyFitCoach.API",
+  "BasePath": "_content/MyFitCoach.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
