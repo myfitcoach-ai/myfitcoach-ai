@@ -1,1 +1,176 @@
-<p>dashboard works!</p>
+<section class="dashboard-overview">
+  <div class="overview-header">
+    <div>
+      <p class="eyebrow">Overview</p>
+      <h1>Fitness performance at a glance</h1>
+      <p>Monitor workouts, recovery, nutrition, and growth in a modern, coach-ready workspace.</p>
+    </div>
+    <div class="header-actions">
+      <button mat-flat-button color="primary">Start session</button>
+      <button mat-stroked-button>Customize plan</button>
+    </div>
+  </div>
+
+  <div class="hero-panel">
+    <div class="hero-copy">
+      <span class="hero-chip">MyFitCoach AI</span>
+      <h2>Unlock athlete performance with AI insights</h2>
+      <p>Intelligent recommendations, real-time progress, and confidence-building routines for every client.</p>
+      <div class="hero-stats">
+        <div>
+          <strong>87%</strong>
+          <span>Consistency rate</span>
+        </div>
+        <div>
+          <strong>12</strong>
+          <span>Active programs</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-image"></div>
+  </div>
+
+  <div class="summary-grid">
+    <mat-card class="summary-card calories">
+      <div class="card-top">
+        <div>
+          <span class="card-label">Calories</span>
+          <h2>1,950 kcal</h2>
+        </div>
+        <mat-icon>local_fire_department</mat-icon>
+      </div>
+      <p>64% of daily goal</p>
+    </mat-card>
+
+    <mat-card class="summary-card workouts">
+      <div class="card-top">
+        <div>
+          <span class="card-label">Workouts</span>
+          <h2>5 sessions</h2>
+        </div>
+        <mat-icon>fitness_center</mat-icon>
+      </div>
+      <p>3 workouts completed this week</p>
+    </mat-card>
+
+    <mat-card class="summary-card weight">
+      <div class="card-top">
+        <div>
+          <span class="card-label">Weight</span>
+          <h2>174 lbs</h2>
+        </div>
+        <mat-icon>monitor_weight</mat-icon>
+      </div>
+      <p>Goal: 168 lbs</p>
+    </mat-card>
+
+    <mat-card class="summary-card steps">
+      <div class="card-top">
+        <div>
+          <span class="card-label">Steps</span>
+          <h2>9,480</h2>
+        </div>
+        <mat-icon>directions_walk</mat-icon>
+      </div>
+      <p>95% of daily target</p>
+    </mat-card>
+  </div>
+
+  <div class="dashboard-sections">
+    <mat-card class="section-card workout-card">
+      <div class="section-header">
+        <div>
+          <p class="section-title">Today's Workout</p>
+          <h3>Full-body strength</h3>
+        </div>
+        <button mat-icon-button aria-label="Start workout"><mat-icon>play_circle</mat-icon></button>
+      </div>
+      <div class="section-body">
+        <div>
+          <p class="section-subtitle">Next exercise</p>
+          <h4>Deadlifts</h4>
+          <p>4 sets · 6 reps · 225 lbs</p>
+        </div>
+        <div class="workout-meta">
+          <div>
+            <span>Duration</span>
+            <strong>45 min</strong>
+          </div>
+          <div>
+            <span>Completed</span>
+            <strong>3/7</strong>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+
+    <div class="right-column">
+      <mat-card class="section-card nutrition-card">
+        <div class="section-header">
+          <p class="section-title">Nutrition Progress</p>
+          <button mat-icon-button aria-label="Nutrition details"><mat-icon>restaurant</mat-icon></button>
+        </div>
+        <div class="progress-group">
+          <div>
+            <span>Calories</span>
+            <strong>1,950 / 2,400</strong>
+          </div>
+          <mat-progress-bar mode="determinate" value="81"></mat-progress-bar>
+        </div>
+        <div class="progress-group">
+          <div>
+            <span>Protein</span>
+            <strong>122 g / 150 g</strong>
+          </div>
+          <mat-progress-bar mode="determinate" value="81"></mat-progress-bar>
+        </div>
+      </mat-card>
+
+      <mat-card class="section-card weekly-card">
+        <div class="section-header">
+          <p class="section-title">Weekly Progress</p>
+          <button mat-icon-button aria-label="Weekly insights"><mat-icon>query_stats</mat-icon></button>
+        </div>
+        <div class="weekly-metrics">
+          <div>
+            <span>Workout</span>
+            <strong>5 / 6</strong>
+          </div>
+          <div>
+            <span>Hydration</span>
+            <strong>7/8 cups</strong>
+          </div>
+          <div>
+            <span>Sleep</span>
+            <strong>7.5 hrs</strong>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+
+  <mat-card class="quick-actions-card">
+    <div class="section-header">
+      <p class="section-title">Quick Actions</p>
+      <button mat-icon-button aria-label="Add action"><mat-icon>add</mat-icon></button>
+    </div>
+    <div class="actions-grid">
+      <button mat-stroked-button>
+        <mat-icon>edit</mat-icon>
+        Log meal
+      </button>
+      <button mat-stroked-button>
+        <mat-icon>schedule</mat-icon>
+        Schedule workout
+      </button>
+      <button mat-stroked-button>
+        <mat-icon>insights</mat-icon>
+        View analytics
+      </button>
+      <button mat-stroked-button>
+        <mat-icon>support</mat-icon>
+        Ask coach
+      </button>
+    </div>
+  </mat-card>
+</section>

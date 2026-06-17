@@ -2,17 +2,16 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  selector: 'app-forgot-password',
+  templateUrl: './forgot-password.component.html',
+  styleUrls: ['./forgot-password.component.scss']
 })
-export class LoginComponent {
+export class ForgotPasswordComponent {
   form: FormGroup;
 
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]]
+      email: ['', [Validators.required, Validators.email]]
     });
   }
 
@@ -21,6 +20,6 @@ export class LoginComponent {
       this.form.markAllAsTouched();
       return;
     }
-    console.log('Login form', this.form.value);
+    console.log('Forgot password form', this.form.value);
   }
 }

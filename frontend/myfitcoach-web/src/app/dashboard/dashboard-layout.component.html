@@ -1,0 +1,63 @@
+<mat-sidenav-container class="dashboard-shell">
+  <mat-sidenav
+    #drawer
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="!(isHandset$ | async)"
+    class="dashboard-sidenav"
+  >
+    <div class="brand">
+      <span class="material-icons-outlined">fitness_center</span>
+      <span>MyFitCoach</span>
+    </div>
+
+    <mat-nav-list>
+      <a mat-list-item routerLink="/dashboard" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
+        <span class="material-icons-outlined">dashboard</span>
+        Overview
+      </a>
+      <a mat-list-item routerLink="/dashboard/stats" routerLinkActive="active-link">
+        <span class="material-icons-outlined">insights</span>
+        Stats
+      </a>
+      <a mat-list-item routerLink="/dashboard/reports" routerLinkActive="active-link">
+        <span class="material-icons-outlined">bar_chart</span>
+        Reports
+      </a>
+      <mat-divider></mat-divider>
+      <a mat-list-item routerLink="/home" routerLinkActive="active-link">
+        <span class="material-icons-outlined">home</span>
+        Home
+      </a>
+      <a mat-list-item routerLink="/login" routerLinkActive="active-link">
+        <span class="material-icons-outlined">login</span>
+        Login
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="dashboard-content">
+    <mat-toolbar color="primary" class="main-toolbar">
+      <button
+        type="button"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async"
+        aria-label="Toggle navigation"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="toolbar-title">MyFitCoach Dashboard</span>
+      <span class="toolbar-spacer"></span>
+      <button mat-icon-button aria-label="Notifications">
+        <mat-icon>notifications</mat-icon>
+      </button>
+      <button mat-icon-button aria-label="Profile">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <div class="content-frame">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

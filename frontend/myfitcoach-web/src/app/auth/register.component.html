@@ -1,0 +1,70 @@
+<div class="auth-page">
+  <mat-card class="auth-card">
+    <div class="auth-card-grid">
+      <div class="auth-form-panel">
+        <div class="auth-header">
+          <p class="secondary-text">Create your coach account</p>
+          <h1>Register for MyFitCoach AI</h1>
+          <p class="auth-description">Launch your training suite with access to athlete analytics, workout plans, and nutrition coaching.</p>
+        </div>
+
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" class="auth-field">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Full name</mat-label>
+            <input matInput formControlName="fullName" type="text" />
+            <mat-error *ngIf="form.get('fullName')?.hasError('required')">Name is required</mat-error>
+            <mat-error *ngIf="form.get('fullName')?.hasError('minlength')">Minimum 2 characters</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Email address</mat-label>
+            <input matInput formControlName="email" type="email" />
+            <mat-error *ngIf="form.get('email')?.hasError('required')">Email is required</mat-error>
+            <mat-error *ngIf="form.get('email')?.hasError('email')">Enter a valid email</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Password</mat-label>
+            <input matInput formControlName="password" type="password" />
+            <mat-error *ngIf="form.get('password')?.hasError('required')">Password is required</mat-error>
+            <mat-error *ngIf="form.get('password')?.hasError('minlength')">Minimum 8 characters</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Confirm password</mat-label>
+            <input matInput formControlName="confirmPassword" type="password" />
+            <mat-error *ngIf="form.hasError('passwordMismatch')">Passwords must match</mat-error>
+          </mat-form-field>
+
+          <mat-checkbox formControlName="terms">I agree to the terms and privacy policy</mat-checkbox>
+          <mat-error *ngIf="form.get('terms')?.hasError('required')">You must accept the terms</mat-error>
+
+          <button mat-flat-button color="primary" class="full-width" type="submit">Create account</button>
+
+          <div class="auth-links">
+            <a routerLink="/login">Already have an account? Sign in</a>
+          </div>
+        </form>
+      </div>
+
+      <div class="auth-visual-panel register-visual">
+        <div class="visual-overlay"></div>
+        <div class="visual-copy">
+          <span class="visual-chip">Coach growth</span>
+          <h2>Scale your fitness program with premium insights</h2>
+          <p>Use AI-powered reporting, recovery tracking, and custom workout flows designed to retain clients.</p>
+          <div class="visual-meta">
+            <div>
+              <strong>120+</strong>
+              <span>Client sessions tracked</span>
+            </div>
+            <div>
+              <strong>8</strong>
+              <span>Weekly coaching themes</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</div>

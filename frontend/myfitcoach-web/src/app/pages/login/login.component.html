@@ -1,1 +1,56 @@
-<p>login works!</p>
+<div class="auth-page">
+  <mat-card class="auth-card">
+    <div class="auth-card-grid">
+      <div class="auth-form-panel">
+        <div class="auth-header">
+          <p class="secondary-text">Welcome back</p>
+          <h1>Sign in to launch your next session</h1>
+          <p class="auth-description">Access your personalized training plan, performance insights, and coach guidance.</p>
+        </div>
+
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" class="auth-field">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Email address</mat-label>
+            <input matInput formControlName="email" type="email" />
+            <mat-error *ngIf="form.get('email')?.hasError('required')">Email is required</mat-error>
+            <mat-error *ngIf="form.get('email')?.hasError('email')">Enter a valid email</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Password</mat-label>
+            <input matInput formControlName="password" type="password" />
+            <mat-error *ngIf="form.get('password')?.hasError('required')">Password is required</mat-error>
+            <mat-error *ngIf="form.get('password')?.hasError('minlength')">Minimum 8 characters</mat-error>
+          </mat-form-field>
+
+          <button mat-flat-button color="primary" class="full-width" type="submit">Sign in</button>
+
+          <div class="auth-links">
+            <a routerLink="/forgot-password">Forgot password?</a>
+            <a routerLink="/register">Create an account</a>
+          </div>
+        </form>
+      </div>
+
+      <div class="auth-visual-panel login-visual">
+        <div class="visual-overlay"></div>
+        <div class="visual-copy">
+          <span class="visual-chip">Fitness analytics</span>
+          <h2>Train smarter with AI-powered coaching</h2>
+          <p>Everything you need to turn data into consistency, from workouts to recovery.</p>
+          <div class="visual-meta">
+            <div>
+              <strong>94%</strong>
+              <span>Goal consistency</span>
+            </div>
+            <div>
+              <strong>5x</strong>
+              <span>Weekly session growth</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</div>
+
