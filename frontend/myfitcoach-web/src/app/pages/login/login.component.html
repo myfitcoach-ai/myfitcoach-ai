@@ -11,23 +11,26 @@
         <form [formGroup]="form" (ngSubmit)="onSubmit()" class="auth-field">
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>Email address</mat-label>
-            <input matInput formControlName="email" type="email" />
+            <input matInput id="loginEmail" aria-label="Email address" formControlName="email" type="email" [disabled]="isLoading" />
             <mat-error *ngIf="form.get('email')?.hasError('required')">Email is required</mat-error>
             <mat-error *ngIf="form.get('email')?.hasError('email')">Enter a valid email</mat-error>
           </mat-form-field>
 
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>Password</mat-label>
-            <input matInput formControlName="password" type="password" />
+            <input matInput id="loginPassword" aria-label="Password" formControlName="password" type="password" [disabled]="isLoading" />
             <mat-error *ngIf="form.get('password')?.hasError('required')">Password is required</mat-error>
             <mat-error *ngIf="form.get('password')?.hasError('minlength')">Minimum 8 characters</mat-error>
           </mat-form-field>
 
-          <button mat-flat-button color="primary" class="full-width" type="submit">Sign in</button>
+          <button mat-flat-button color="primary" class="full-width" type="submit" [disabled]="isLoading || form.invalid">
+            <mat-spinner *ngIf="isLoading" diameter="20" class="button-spinner"></mat-spinner>
+            <span>{{ isLoading ? 'Signing in...' : 'Sign in' }}</span>
+          </button>
 
           <div class="auth-links">
-            <a routerLink="/forgot-password">Forgot password?</a>
-            <a routerLink="/register">Create an account</a>
+            <a routerLink="/auth/forgot-password">Forgot password?</a>
+            <a routerLink="/auth/register">Create an account</a>
           </div>
         </form>
       </div>

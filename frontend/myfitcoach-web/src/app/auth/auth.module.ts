@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
@@ -9,6 +10,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from '../pages/login/login.component';
@@ -19,6 +22,7 @@ import { ForgotPasswordComponent } from './forgot-password.component';
   declarations: [LoginComponent, RegisterComponent, ForgotPasswordComponent],
   imports: [
     CommonModule,
+    HttpClientModule,
     ReactiveFormsModule,
     RouterModule,
     AuthRoutingModule,
@@ -28,7 +32,9 @@ import { ForgotPasswordComponent } from './forgot-password.component';
     MatInputModule,
     MatIconModule,
     MatCheckboxModule,
-    MatDividerModule
+    MatDividerModule,
+    MatSnackBarModule,
+    MatProgressSpinnerModule
   ]
 })
 export class AuthModule {}

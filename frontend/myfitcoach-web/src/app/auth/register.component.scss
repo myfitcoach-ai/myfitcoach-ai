@@ -138,6 +138,143 @@
   font-size: 1.2rem;
 }
 
+/* Form Field Enhancements */
+mat-form-field {
+  .mat-mdc-text-field-wrapper {
+    padding-bottom: 0;
+  }
+
+  &.mat-focused {
+    .mat-mdc-form-field-hint {
+      color: #4338ca;
+    }
+  }
+}
+
+/* Password Visibility Toggle */
+::ng-deep {
+  .mdc-icon-button {
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+}
+
+mat-form-field .mat-mdc-text-field-wrapper {
+  .mat-mdc-icon-button {
+    margin-right: -8px;
+  }
+}
+
+/* Terms Checkbox Wrapper */
+.terms-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+.terms-checkbox {
+  &:disabled {
+    opacity: 0.6;
+  }
+}
+
+.terms-error {
+  font-size: 0.75rem;
+  color: #d32f2f;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+/* Submit Button */
+.submit-button {
+  margin-top: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+  height: 48px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:disabled {
+    background-color: rgba(67, 56, 202, 0.6) !important;
+    cursor: not-allowed;
+  }
+
+  &:not(:disabled):hover {
+    box-shadow: 0 8px 24px rgba(67, 56, 202, 0.3);
+  }
+}
+
+.button-spinner {
+  display: inline-block;
+  margin-right: 0.75rem;
+
+  ::ng-deep circle {
+    stroke: #ffffff !important;
+  }
+}
+
+/* Loading State Styles */
+mat-form-field.mat-form-field-disabled {
+  opacity: 0.7;
+}
+
+input:disabled,
+mat-checkbox:disabled {
+  cursor: not-allowed;
+}
+
+.auth-links a {
+  &.disabled {
+    pointer-events: none;
+    opacity: 0.6;
+  }
+}
+
+/* Error Message Styling */
+mat-error {
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+/* Validation Error States */
+::ng-deep {
+  .mat-mdc-form-field.mat-form-field-invalid {
+    .mdc-text-field {
+      --mdc-theme-primary: #d32f2f;
+    }
+  }
+
+  .mat-mdc-form-field-error {
+    color: #d32f2f;
+  }
+}
+
+/* Snackbar Styling */
+::ng-deep {
+  .success-snackbar {
+    background-color: #4caf50 !important;
+    color: #ffffff !important;
+
+    .mat-mdc-button {
+      color: #ffffff !important;
+    }
+  }
+
+  .error-snackbar {
+    background-color: #d32f2f !important;
+    color: #ffffff !important;
+
+    .mat-mdc-button {
+      color: #ffffff !important;
+    }
+  }
+}
+
 @media (max-width: 960px) {
   .auth-card-grid {
     grid-template-columns: 1fr;

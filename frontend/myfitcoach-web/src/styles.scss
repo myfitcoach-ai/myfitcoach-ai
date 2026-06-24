@@ -1,3 +1,70 @@
+/* Professional Toast/Snackbar Styles */
+::ng-deep {
+  .success-snackbar {
+    background-color: #4caf50 !important;
+    color: #ffffff !important;
+    border-radius: 8px !important;
+    box-shadow: 0 8px 24px rgba(76, 175, 80, 0.3) !important;
+    margin: 1rem !important;
+
+    .mdc-button {
+      color: #ffffff !important;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.1) !important;
+      }
+    }
+
+    .mdc-snackbar__surface {
+      background-color: #4caf50 !important;
+    }
+
+    .mat-mdc-button {
+      color: #ffffff !important;
+    }
+  }
+
+  .error-snackbar {
+    background-color: #d32f2f !important;
+    color: #ffffff !important;
+    border-radius: 8px !important;
+    box-shadow: 0 8px 24px rgba(211, 47, 47, 0.3) !important;
+    margin: 1rem !important;
+
+    .mdc-button {
+      color: #ffffff !important;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.1) !important;
+      }
+    }
+
+    .mdc-snackbar__surface {
+      background-color: #d32f2f !important;
+    }
+
+    .mat-mdc-button {
+      color: #ffffff !important;
+    }
+  }
+
+  /* Snackbar container styling */
+  .mat-mdc-snack-bar-container {
+    &.success-snackbar {
+      background-color: #4caf50 !important;
+    }
+
+    &.error-snackbar {
+      background-color: #d32f2f !important;
+    }
+  }
+
+  /* Material Snackbar Text Styling */
+  .mdc-snackbar__label {
+    color: #ffffff !important;
+    font-weight: 500;
+  }
+}
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
 
 html, body {
@@ -19,4 +86,82 @@ body {
   top: 0;
   z-index: 10;
 }
+
+/* Professional Snackbar Styling */
+::ng-deep {
+  /* Success Snackbar */
+  .success-snackbar {
+    background: linear-gradient(135deg, #4caf50, #45a049) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 8px 24px rgba(76, 175, 80, 0.3) !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+
+    .mat-mdc-button {
+      color: #ffffff !important;
+      font-weight: 600 !important;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.1) !important;
+      }
+    }
+
+    .mdc-snackbar__surface {
+      background-color: transparent !important;
+    }
+  }
+
+  /* Error Snackbar */
+  .error-snackbar {
+    background: linear-gradient(135deg, #d32f2f, #c62828) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 8px 24px rgba(211, 47, 47, 0.3) !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+
+    .mat-mdc-button {
+      color: #ffffff !important;
+      font-weight: 600 !important;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.1) !important;
+      }
+    }
+
+    .mdc-snackbar__surface {
+      background-color: transparent !important;
+    }
+  }
+
+  /* Snackbar Container */
+  .mdc-snackbar {
+    bottom: 20px !important;
+    right: 20px !important;
+    left: auto !important;
+    border-radius: 8px !important;
+    max-width: 500px !important;
+  }
+
+  .mdc-snackbar__surface {
+    border-radius: 8px !important;
+  }
+
+  .mat-mdc-snack-bar-container {
+    border-radius: 8px !important;
+    padding: 0 !important;
+  }
+}
+
+/* Responsive Snackbar */
+@media (max-width: 600px) {
+  ::ng-deep {
+    .mdc-snackbar {
+      bottom: 10px !important;
+      right: 10px !important;
+      left: 10px !important;
+      max-width: none !important;
+    }
+  }
+}
+
 

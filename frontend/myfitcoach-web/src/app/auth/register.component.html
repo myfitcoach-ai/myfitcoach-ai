@@ -9,44 +9,139 @@
         </div>
 
         <form [formGroup]="form" (ngSubmit)="onSubmit()" class="auth-field">
+          <!-- Full Name Field -->
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>Full name</mat-label>
-            <input matInput formControlName="fullName" type="text" />
-            <mat-error *ngIf="form.get('fullName')?.hasError('required')">Name is required</mat-error>
-            <mat-error *ngIf="form.get('fullName')?.hasError('minlength')">Minimum 2 characters</mat-error>
+            <input 
+              matInput 
+              id="fullName"
+              formControlName="fullName" 
+              type="text"
+              aria-label="Full name"
+              [disabled]="isLoading"
+            />
+            <mat-error *ngIf="form.get('fullName')?.hasError('required') && form.get('fullName')?.touched">
+              Name is required
+            </mat-error>
+            <mat-error *ngIf="form.get('fullName')?.hasError('minlength') && form.get('fullName')?.touched">
+              Minimum 2 characters
+            </mat-error>
           </mat-form-field>
 
+          <!-- Email Field -->
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>Email address</mat-label>
-            <input matInput formControlName="email" type="email" />
-            <mat-error *ngIf="form.get('email')?.hasError('required')">Email is required</mat-error>
-            <mat-error *ngIf="form.get('email')?.hasError('email')">Enter a valid email</mat-error>
+            <input 
+              matInput 
+              id="email"
+              formControlName="email" 
+              type="email"
+              aria-label="Email address"
+              [disabled]="isLoading"
+            />
+            <mat-error *ngIf="form.get('email')?.hasError('required') && form.get('email')?.touched">
+              Email is required
+            </mat-error>
+            <mat-error *ngIf="form.get('email')?.hasError('email') && form.get('email')?.touched">
+              Enter a valid email
+            </mat-error>
           </mat-form-field>
 
+          <!-- Password Field -->
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>Password</mat-label>
-            <input matInput formControlName="password" type="password" />
-            <mat-error *ngIf="form.get('password')?.hasError('required')">Password is required</mat-error>
-            <mat-error *ngIf="form.get('password')?.hasError('minlength')">Minimum 8 characters</mat-error>
+            <input 
+              matInput 
+              id="password"
+              formControlName="password" 
+              [type]="passwordVisible ? 'text' : 'password'"
+              aria-label="Password"
+              [disabled]="isLoading"
+            />
+            <button
+              mat-icon-button
+              matSuffix
+              (click)="togglePasswordVisibility()"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="passwordVisible"
+              type="button"
+              [disabled]="isLoading"
+            >
+              <mat-icon>{{ passwordVisible ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+            <mat-error *ngIf="form.get('password')?.hasError('required') && form.get('password')?.touched">
+              Password is required
+            </mat-error>
+            <mat-error *ngIf="form.get('password')?.hasError('minlength') && form.get('password')?.touched">
+              Minimum 8 characters
+            </mat-error>
           </mat-form-field>
 
+          <!-- Confirm Password Field -->
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>Confirm password</mat-label>
-            <input matInput formControlName="confirmPassword" type="password" />
-            <mat-error *ngIf="form.hasError('passwordMismatch')">Passwords must match</mat-error>
+            <input 
+              matInput 
+              id="confirmPassword"
+              formControlName="confirmPassword" 
+              [type]="confirmPasswordVisible ? 'text' : 'password'"
+              aria-label="Confirm password"
+              [disabled]="isLoading"
+            />
+            <button
+              mat-icon-button
+              matSuffix
+              (click)="toggleConfirmPasswordVisibility()"
+              [attr.aria-label]="'Hide confirm password'"
+              [attr.aria-pressed]="confirmPasswordVisible"
+              type="button"
+              [disabled]="isLoading"
+            >
+              <mat-icon>{{ confirmPasswordVisible ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+            <mat-error *ngIf="form.get('confirmPassword')?.hasError('required') && form.get('confirmPassword')?.touched">
+              Please confirm your password
+            </mat-error>
+            <mat-error *ngIf="showPasswordMismatchError">
+              Passwords must match
+            </mat-error>
           </mat-form-field>
 
-          <mat-checkbox formControlName="terms">I agree to the terms and privacy policy</mat-checkbox>
-          <mat-error *ngIf="form.get('terms')?.hasError('required')">You must accept the terms</mat-error>
+          <!-- Terms Checkbox -->
+          <div class="terms-wrapper">
+            <mat-checkbox 
+              formControlName="terms"
+              [disabled]="isLoading"
+              class="terms-checkbox"
+            >
+              I agree to the terms and privacy policy
+            </mat-checkbox>
+            <mat-error *ngIf="form.get('terms')?.hasError('required') && form.get('terms')?.touched" class="terms-error">
+              You must accept the terms
+            </mat-error>
+          </div>
 
-          <button mat-flat-button color="primary" class="full-width" type="submit">Create account</button>
+          <!-- Submit Button -->
+          <button 
+            mat-flat-button 
+            color="primary" 
+            class="full-width submit-button" 
+            type="submit"
+            [disabled]="isLoading || form.invalid"
+          >
+            <mat-spinner *ngIf="isLoading" diameter="20" class="button-spinner"></mat-spinner>
+            <span *ngIf="!isLoading">Create account</span>
+            <span *ngIf="isLoading">Creating account...</span>
+          </button>
 
+          <!-- Login Link -->
           <div class="auth-links">
-            <a routerLink="/login">Already have an account? Sign in</a>
+            <a routerLink="/auth/login" [class.disabled]="isLoading">Already have an account? Sign in</a>
           </div>
         </form>
       </div>
 
+      <!-- Visual Panel -->
       <div class="auth-visual-panel register-visual">
         <div class="visual-overlay"></div>
         <div class="visual-copy">
