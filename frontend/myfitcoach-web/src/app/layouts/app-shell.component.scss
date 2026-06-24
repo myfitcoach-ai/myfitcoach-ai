@@ -1,0 +1,291 @@
+.app-shell {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #eef4ff, #f8fbff);
+}
+
+.app-sidenav {
+  width: 260px;
+  background: rgba(255, 255, 255, 0.98);
+  border-right: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.06);
+
+  // Scrollbar styling
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(67, 56, 202, 0.2);
+    border-radius: 3px;
+
+    &:hover {
+      background: rgba(67, 56, 202, 0.4);
+    }
+  }
+}
+
+// Brand Section
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.5rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1f3c88;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+
+  .brand-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, #4338ca, #6366f1);
+    border-radius: 0.5rem;
+    color: white;
+
+    mat-icon {
+      font-size: 18px;
+      width: 18px;
+      height: 18px;
+      line-height: 18px;
+    }
+  }
+
+  .brand-text {
+    flex: 1;
+  }
+}
+
+// Navigation Items
+mat-nav-list {
+  padding: 0.5rem 0;
+}
+
+.nav-item {
+  margin: 0.25rem 0.75rem;
+  border-radius: 0.75rem;
+  font-size: 0.9rem;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+  mat-icon {
+    margin-right: 0.75rem;
+    color: #6b7280;
+  }
+
+  &:hover {
+    background: rgba(67, 56, 202, 0.08);
+
+    mat-icon {
+      color: #4338ca;
+    }
+  }
+
+  &.active-link {
+    background: linear-gradient(90deg, rgba(67, 56, 202, 0.12), rgba(67, 56, 202, 0.06));
+    font-weight: 600;
+    color: #4338ca;
+
+    mat-icon {
+      color: #4338ca;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, #4338ca, #6366f1);
+      border-radius: 0 3px 3px 0;
+    }
+  }
+}
+
+// Navigation Dividers
+.nav-divider {
+  margin: 0.75rem 0;
+  border-top: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+// Expansion Panel (Workouts Group)
+.nav-expansion-panel {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+
+  &.mat-expanded {
+    .nav-expansion-header {
+      background: rgba(67, 56, 202, 0.06);
+    }
+  }
+}
+
+.nav-expansion-header {
+  padding: 0 0.75rem !important;
+  margin: 0.25rem 0 !important;
+  height: auto !important;
+  min-height: 48px !important;
+  display: flex !important;
+  align-items: center !important;
+  border-radius: 0.75rem;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+
+  .expansion-icon {
+    margin-right: 0.75rem !important;
+    color: #6b7280 !important;
+  }
+
+  .expansion-title {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #1f2937;
+  }
+
+  &:hover {
+    background: rgba(67, 56, 202, 0.08) !important;
+
+    .expansion-icon {
+      color: #4338ca !important;
+    }
+
+    .expansion-title {
+      color: #4338ca;
+    }
+  }
+}
+
+// Nested Navigation List
+.nested-nav-list {
+  padding: 0.25rem 0 !important;
+  margin: 0.5rem 0 !important;
+  background: rgba(67, 56, 202, 0.02) !important;
+  border-radius: 0.5rem;
+  border-left: 2px solid rgba(67, 56, 202, 0.15);
+  margin-left: 0.75rem !important;
+}
+
+.nested-nav-item {
+  margin: 0.125rem 0.5rem !important;
+  padding-left: 1rem !important;
+  border-radius: 0.5rem;
+  font-size: 0.85rem;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+  mat-icon {
+    margin-right: 0.75rem !important;
+    color: #9ca3af;
+    font-size: 18px !important;
+  }
+
+  &:hover {
+    background: rgba(67, 56, 202, 0.08) !important;
+
+    mat-icon {
+      color: #4338ca !important;
+    }
+  }
+
+  &.active-link {
+    background: rgba(67, 56, 202, 0.12) !important;
+    font-weight: 600;
+    color: #4338ca;
+
+    mat-icon {
+      color: #4338ca !important;
+    }
+  }
+}
+
+// Content Areas
+.app-content {
+  min-height: 100vh;
+  background: transparent;
+}
+
+.content-frame {
+  padding: 1.5rem;
+}
+
+// Toolbar
+.app-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  height: 64px;
+}
+
+.toolbar-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1d2b5b;
+}
+
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+mat-toolbar {
+  background: #ffffff;
+  color: #1d2b5b;
+  box-shadow: 0 8px 28px rgba(15, 23, 42, 0.08);
+
+  button[mat-icon-button] {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover {
+      background: rgba(67, 56, 202, 0.08);
+    }
+  }
+}
+
+// Responsive Design
+@media (max-width: 900px) {
+  .app-sidenav {
+    width: 100%;
+  }
+
+  .content-frame {
+    padding: 1rem;
+  }
+
+  .nav-item,
+  .nav-expansion-header {
+    font-size: 0.9rem;
+  }
+
+  .nested-nav-item {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .brand {
+    padding: 1rem 1.25rem;
+
+    .brand-text {
+      display: none;
+    }
+  }
+
+  .nav-item,
+  .nav-expansion-header {
+    padding: 0.5rem !important;
+  }
+
+  .content-frame {
+    padding: 0.75rem;
+  }
+}

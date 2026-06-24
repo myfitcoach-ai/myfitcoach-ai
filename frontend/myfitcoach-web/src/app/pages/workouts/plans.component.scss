@@ -1,0 +1,11 @@
+.plans-overview { display:block; }
+.plans-hero { background: linear-gradient(135deg,#ffffff,#eef4ff); padding:1rem; border-radius:0.8rem; margin-bottom:1rem; }
+
+.plans-grid { display:grid; grid-template-columns: repeat(4,1fr); gap:1rem; }
+.plan-card { padding:1rem; border-radius:0.75rem; }
+.plan-card .meta { color:#6b7280; font-size:0.95rem; margin-bottom:0.5rem; }
+.plan-card .desc { color:#475569; }
+.card-actions { margin-top:0.75rem; }
+
+@media (max-width:900px) { .plans-grid { grid-template-columns: repeat(2,1fr); } }
+@media (max-width:520px) { .plans-grid { grid-template-columns: 1fr; } }

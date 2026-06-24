@@ -1,0 +1,29 @@
+<section class="today-workout">
+  <div class="hero-panel">
+    <div class="hero-left">
+      <p class="eyebrow">Today's workout</p>
+      <h1>{{ workout.name }}</h1>
+      <div class="meta">{{ workout.duration }} · {{ workout.difficulty }}</div>
+      <div class="muscles">
+        <div class="chip-list">
+          <span class="chip" *ngFor="let m of workout.muscles">{{ m }}</span>
+        </div>
+      </div>
+      <div class="actions">
+        <button mat-flat-button color="primary">Start Workout</button>
+        <button mat-stroked-button>Mark Complete</button>
+      </div>
+    </div>
+    <div class="hero-right">
+      <mat-card>
+        <h3>Exercises</h3>
+        <mat-list>
+          <mat-list-item *ngFor="let e of exercises">
+            <div mat-line class="ex-name">{{ e.name }}</div>
+            <div mat-line class="ex-meta">{{ e.sets }} sets · {{ e.reps }} reps · rest {{ e.rest }}</div>
+          </mat-list-item>
+        </mat-list>
+      </mat-card>
+    </div>
+  </div>
+</section>

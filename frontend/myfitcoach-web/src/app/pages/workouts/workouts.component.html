@@ -1,0 +1,47 @@
+<section class="workouts-overview">
+  <div class="hero">
+    <div class="hero-copy">
+      <p class="eyebrow">Workouts</p>
+      <h1>Your training this week</h1>
+      <p class="muted">Stay consistent — pick up where you left off or start a fresh session.</p>
+      <div class="hero-actions">
+        <button mat-flat-button color="primary" routerLink="/workouts/today">Start Today's Workout</button>
+        <button mat-stroked-button routerLink="/workouts/plans">View Plans</button>
+        <button mat-stroked-button>Create Plan</button>
+      </div>
+    </div>
+    <div class="hero-image"></div>
+  </div>
+
+  <div class="summary-grid">
+    <mat-card *ngFor="let s of summaries" class="summary-card">
+      <div class="label">{{ s.title }}</div>
+      <h2>{{ s.value }}</h2>
+      <div class="sub">{{ s.subtitle }}</div>
+    </mat-card>
+  </div>
+
+  <div class="weekly-grid">
+    <div class="week-head">Weekly schedule</div>
+    <div class="week-days">
+      <div *ngFor="let d of weekly" class="day" [class.done]="d.done">
+        <div class="day-name">{{ d.day }}</div>
+        <div class="day-work">{{ d.name }}</div>
+      </div>
+    </div>
+  </div>
+
+  <mat-card class="recent-card">
+    <div class="section-header">
+      <div>
+        <p class="section-title">Recent workouts</p>
+      </div>
+    </div>
+    <mat-list>
+      <mat-list-item *ngFor="let r of recent">
+        <div mat-line>{{ r.title }}</div>
+        <div mat-line class="muted">{{ r.minutes }} min · {{ r.calories }} kcal</div>
+      </mat-list-item>
+    </mat-list>
+  </mat-card>
+</section>

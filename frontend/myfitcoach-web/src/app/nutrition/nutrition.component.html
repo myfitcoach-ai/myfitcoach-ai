@@ -1,0 +1,88 @@
+<main class="nutrition-page">
+  <section class="hero-panel mat-elevation-z3">
+    <div class="hero-copy">
+      <p class="eyebrow">Today's Nutrition</p>
+      <h1>Fuel your day with smart choices</h1>
+      <p class="hero-subtitle">Keep your energy steady and your goals on track with a balanced meal plan.</p>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat-card primary-card">
+        <label>Calories remaining</label>
+        <strong>{{ remainingCalories }} kcal</strong>
+      </div>
+      <div class="stat-card accent-card">
+        <label>Protein remaining</label>
+        <strong>{{ remainingProtein }} g</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="summary-grid">
+    <article class="summary-card" *ngFor="let item of summary">
+      <div class="summary-card-header">
+        <span>{{ item.title }}</span>
+        <mat-icon>insights</mat-icon>
+      </div>
+      <p class="summary-value">
+        <strong>{{ item.value }}</strong>
+        <span>/ {{ item.target }}{{ item.suffix }}</span>
+      </p>
+      <mat-divider></mat-divider>
+      <p class="summary-footnote">Balanced daily target with premium AI recommendations.</p>
+    </article>
+  </section>
+
+  <section class="meals-section">
+    <div class="section-title-bar">
+      <div>
+        <p class="eyebrow">Meal Breakdown</p>
+        <h2>Today's meals</h2>
+      </div>
+      <span class="meal-summary">4 meals tracked</span>
+    </div>
+
+    <div class="meal-cards">
+      <article class="meal-card" *ngFor="let meal of meals">
+        <div class="meal-card-header">
+          <h3>{{ meal.name }}</h3>
+          <div class="meal-numbers">
+            <span>{{ meal.calories }} kcal</span>
+            <span>{{ meal.protein }} g protein</span>
+          </div>
+        </div>
+        <ul>
+          <li *ngFor="let item of meal.items">{{ item }}</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="assist-actions-grid">
+    <mat-card class="coach-card mat-elevation-z3">
+      <div class="card-top">
+        <div>
+          <p class="eyebrow">AI Nutrition Coach</p>
+          <h2>Personalized suggestion</h2>
+        </div>
+        <mat-icon>smart_toy</mat-icon>
+      </div>
+      <p class="coach-suggestion">{{ coachSuggestion }}</p>
+      <div class="coach-notes">
+        <span class="pill">+28g protein</span>
+        <span class="pill">Stronger recovery</span>
+        <span class="pill">Healthy energy</span>
+      </div>
+    </mat-card>
+
+    <mat-card class="actions-card mat-elevation-z3">
+      <p class="eyebrow">Quick Actions</p>
+      <div class="action-buttons">
+        <button mat-flat-button color="primary" *ngFor="let action of actions">
+          <mat-icon>{{ action.icon }}</mat-icon>
+          {{ action.label }}
+        </button>
+      </div>
+    </mat-card>
+  </section>
+</main>

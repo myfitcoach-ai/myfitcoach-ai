@@ -1,0 +1,23 @@
+.workouts-shell {
+  display: block;
+}
+
+.workouts-toolbar {
+  background: #fff;
+  color: #1d2b5b;
+  box-shadow: 0 8px 28px rgba(15, 23, 42, 0.08);
+}
+
+.toolbar-title {
+  font-weight: 700;
+}
+
+.toolbar-spacer { flex: 1 1 auto; }
+
+.workouts-content {
+  padding: 1.25rem;
+}
+
+@media (max-width: 720px) {
+  .workouts-content { padding: 0.75rem; }
+}

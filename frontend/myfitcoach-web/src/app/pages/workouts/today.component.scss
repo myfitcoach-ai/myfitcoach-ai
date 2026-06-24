@@ -1,0 +1,17 @@
+.today-workout { display: block; }
+
+.hero-panel { display: grid; grid-template-columns: 1fr 360px; gap:1rem; align-items:start; }
+
+.hero-left { background: linear-gradient(135deg,#fff,#eef4ff); padding:1rem; border-radius:0.75rem; }
+
+.muscles { margin:0.5rem 0; }
+.chip-list { display:flex; gap:0.5rem; flex-wrap:wrap; }
+.chip { background:#eef2ff; color:#0b2a6f; padding:0.35rem 0.6rem; border-radius:999px; font-size:0.85rem; }
+.actions { display:flex; gap:0.5rem; margin-top:1rem; }
+
+.hero-right mat-card { padding:1rem; }
+
+.ex-name { font-weight:600; }
+.ex-meta { color:#6b7280; font-size:0.95rem; }
+
+@media (max-width:900px) { .hero-panel { grid-template-columns: 1fr; } }

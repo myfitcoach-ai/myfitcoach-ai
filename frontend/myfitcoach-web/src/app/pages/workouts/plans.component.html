@@ -1,0 +1,20 @@
+<section class="plans-overview">
+  <div class="plans-hero">
+    <div>
+      <p class="eyebrow">Plans</p>
+      <h1>Structured training plans</h1>
+      <p class="muted">Pick a plan that fits your goals — preview and start when ready.</p>
+    </div>
+  </div>
+
+  <div class="plans-grid">
+    <mat-card class="plan-card" *ngFor="let p of plans">
+      <h3>{{ p.title }}</h3>
+      <div class="meta">{{ p.days }} days/week · {{ p.level }} · {{ p.duration }}</div>
+      <p class="desc">{{ p.description }}</p>
+      <div class="card-actions">
+        <button mat-stroked-button>View Plan</button>
+      </div>
+    </mat-card>
+  </div>
+</section>

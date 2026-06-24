@@ -1,0 +1,16 @@
+<div class="workouts-shell">
+  <mat-toolbar class="workouts-toolbar" color="primary">
+    <span class="toolbar-title">Workouts</span>
+    <span class="toolbar-spacer"></span>
+    <button mat-icon-button routerLink="/workouts/today" aria-label="Today">
+      <mat-icon>play_circle</mat-icon>
+    </button>
+    <button mat-icon-button routerLink="/workouts/plans" aria-label="Plans">
+      <mat-icon>format_list_bulleted</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <div class="workouts-content">
+    <router-outlet></router-outlet>
+  </div>
+</div>
