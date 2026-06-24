@@ -1,0 +1,148 @@
+.analytics-page {
+  display: grid;
+  gap: 1.5rem;
+  padding: 1.5rem 1.5rem 2rem;
+}
+
+.analytics-hero {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 1.5rem;
+  padding: 1.75rem;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, #22355d, #15203f);
+  color: white;
+}
+
+.hero-copy {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.hero-copy .eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  opacity: 0.88;
+}
+
+.hero-copy h1 {
+  margin: 0;
+  font-size: clamp(2rem, 2.5vw, 2.6rem);
+  line-height: 1.05;
+}
+
+.hero-subtitle {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.82);
+  max-width: 38rem;
+}
+
+.summary-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.summary-card {
+  padding: 1.2rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.12);
+  display: grid;
+  gap: 0.5rem;
+}
+
+.summary-card strong {
+  font-size: 1.5rem;
+}
+
+.trend-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.trend-card {
+  padding: 1.35rem;
+  border-radius: 1rem;
+  background: #ffffff;
+  box-shadow: 0 1px 18px rgba(20, 38, 72, 0.06);
+  display: grid;
+  gap: 1rem;
+}
+
+.trend-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #1f2a47;
+}
+
+.trend-card strong {
+  font-size: 1rem;
+  color: #4b5a7a;
+}
+
+.trend-card p {
+  margin: 0;
+  color: #6b7390;
+}
+
+.insight-actions-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 1rem;
+}
+
+.insight-card,
+.actions-card {
+  padding: 1.5rem;
+  border-radius: 1rem;
+  background: #ffffff;
+  box-shadow: 0 1px 18px rgba(20, 38, 72, 0.06);
+}
+
+.insight-card .eyebrow,
+.actions-card .eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #4b5a7a;
+}
+
+.insight-card h2 {
+  margin: 0.75rem 0 0;
+  line-height: 1.4;
+}
+
+.action-buttons {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.action-buttons button {
+  justify-content: flex-start;
+  gap: 0.75rem;
+  text-transform: none;
+}
+
+@media (max-width: 1080px) {
+  .analytics-hero,
+  .insight-actions-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .trend-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .analytics-page {
+    padding: 1rem;
+  }
+
+  .trend-grid {
+    grid-template-columns: 1fr;
+  }
+}

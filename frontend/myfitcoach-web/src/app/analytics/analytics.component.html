@@ -1,0 +1,43 @@
+<main class="analytics-page">
+  <section class="analytics-hero mat-elevation-z3">
+    <div class="hero-copy">
+      <p class="eyebrow">Fitness analytics</p>
+      <h1>Understand your weight, nutrition, workouts, and consistency trends.</h1>
+      <p class="hero-subtitle">A premium analytics dashboard for smarter training and recovery decisions.</p>
+    </div>
+    <div class="summary-grid">
+      <article class="summary-card" *ngFor="let item of summary">
+        <span>{{ item.label }}</span>
+        <strong>{{ item.value }}</strong>
+      </article>
+    </div>
+  </section>
+
+  <section class="trend-grid">
+    <article class="trend-card mat-elevation-z3" *ngFor="let card of trendCards">
+      <div class="trend-card-header">
+        <span>{{ card.title }}</span>
+        <mat-icon>show_chart</mat-icon>
+      </div>
+      <strong>{{ card.meta }}</strong>
+      <p>{{ card.trend }}</p>
+    </article>
+  </section>
+
+  <section class="insight-actions-grid">
+    <mat-card class="insight-card mat-elevation-z3">
+      <p class="eyebrow">{{ insight.title }}</p>
+      <h2>{{ insight.description }}</h2>
+    </mat-card>
+
+    <mat-card class="actions-card mat-elevation-z3">
+      <p class="eyebrow">Quick actions</p>
+      <div class="action-buttons">
+        <button mat-flat-button color="primary" *ngFor="let action of actions">
+          <mat-icon>{{ action.icon }}</mat-icon>
+          {{ action.label }}
+        </button>
+      </div>
+    </mat-card>
+  </section>
+</main>

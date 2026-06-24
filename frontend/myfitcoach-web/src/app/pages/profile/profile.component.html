@@ -1,0 +1,86 @@
+<main class="profile-page">
+  <section class="profile-card mat-elevation-z3">
+    <div class="profile-header">
+      <div>
+        <p class="eyebrow">Your fitness profile</p>
+        <h1>{{ name }}</h1>
+        <p class="profile-meta">Age {{ age }} • {{ gender }} • {{ height }}</p>
+      </div>
+      <div class="profile-avatar">
+        <div class="avatar-placeholder">
+          <mat-icon>person</mat-icon>
+        </div>
+      </div>
+    </div>
+
+    <div class="profile-details-grid">
+      <article>
+        <span>Current Weight</span>
+        <strong>{{ currentWeight }}</strong>
+      </article>
+      <article>
+        <span>Goal Weight</span>
+        <strong>{{ goalWeight }}</strong>
+      </article>
+      <article>
+        <span>Fitness Goal</span>
+        <strong>{{ fitnessGoal }}</strong>
+      </article>
+      <article>
+        <span>Activity Level</span>
+        <strong>{{ activityLevel }}</strong>
+      </article>
+    </div>
+
+    <div class="profile-section">
+      <h2>Goal details</h2>
+      <div class="profile-details-grid">
+        <article>
+          <span>Fat loss</span>
+          <strong>{{ fatLossGoal }}</strong>
+        </article>
+        <article>
+          <span>Weekly target</span>
+          <strong>{{ weeklyTarget }}</strong>
+        </article>
+        <article>
+          <span>Protein target</span>
+          <strong>{{ proteinTarget }}</strong>
+        </article>
+      </div>
+    </div>
+
+    <div class="profile-section">
+      <h2>Preferences</h2>
+      <div class="preference-list">
+        <span *ngFor="let preference of preferences">{{ preference }}</span>
+      </div>
+    </div>
+
+    <div class="profile-section">
+      <h2>Coach setup</h2>
+      <div class="preference-list">
+        <span *ngFor="let item of coachSetup">{{ item }}</span>
+      </div>
+    </div>
+
+    <div class="profile-actions">
+      <button mat-flat-button color="primary">
+        <mat-icon>edit</mat-icon>
+        Edit Profile
+      </button>
+      <button mat-stroked-button>
+        <mat-icon>tune</mat-icon>
+        Update Goals
+      </button>
+      <button mat-stroked-button>
+        <mat-icon>swap_horiz</mat-icon>
+        Change Units
+      </button>
+      <button mat-stroked-button>
+        <mat-icon>credit_card</mat-icon>
+        Manage Subscription
+      </button>
+    </div>
+  </section>
+</main>

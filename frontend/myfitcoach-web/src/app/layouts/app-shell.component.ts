@@ -9,6 +9,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { RouterModule } from '@angular/router';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 
@@ -32,12 +33,20 @@ import { map, shareReplay } from 'rxjs/operators';
 export class AppShellComponent {
   isHandset$!: Observable<boolean>;
 
-  constructor(private breakpointObserver: BreakpointObserver) {
+  constructor(private breakpointObserver: BreakpointObserver, private router: Router) {
     this.isHandset$ = this.breakpointObserver
       .observe([Breakpoints.Handset, Breakpoints.Tablet])
       .pipe(
         map((result) => result.matches),
         shareReplay({ bufferSize: 1, refCount: true })
       );
+  }
+
+  isWorkoutsOpen(): boolean {
+    try {
+      return this.router.url.startsWith('/workouts');
+    } catch {
+      return false;
+    }
   }
 }

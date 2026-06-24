@@ -31,7 +31,7 @@
 
       <!-- Workouts Section (Nested) -->
       <mat-list>
-        <mat-expansion-panel class="nav-expansion-panel">
+        <mat-expansion-panel class="nav-expansion-panel" [expanded]="isWorkoutsOpen()">
           <mat-expansion-panel-header class="nav-expansion-header">
             <mat-icon matListItemIcon class="expansion-icon">
               fitness_center
@@ -108,18 +108,50 @@
         <span matListItemTitle>AI Coach</span>
       </a>
 
-      <mat-divider class="nav-divider"></mat-divider>
-
-      <!-- Utility Section -->
       <a
         mat-list-item
-        routerLink="/home"
+        routerLink="/analytics"
         routerLinkActive="active-link"
         class="nav-item"
       >
-        <mat-icon matListItemIcon>home</mat-icon>
-        <span matListItemTitle>Home</span>
+        <mat-icon matListItemIcon>analytics</mat-icon>
+        <span matListItemTitle>Analytics</span>
       </a>
+
+      <a
+        mat-list-item
+        routerLink="/profile"
+        routerLinkActive="active-link"
+        class="nav-item"
+      >
+        <mat-icon matListItemIcon>person</mat-icon>
+        <span matListItemTitle>Profile</span>
+      </a>
+
+      <a
+        mat-list-item
+        routerLink="/settings"
+        routerLinkActive="active-link"
+        class="nav-item"
+      >
+        <mat-icon matListItemIcon>settings</mat-icon>
+        <span matListItemTitle>Settings</span>
+      </a>
+
+      <a
+        mat-list-item
+        routerLink="/subscription"
+        routerLinkActive="active-link"
+        class="nav-item"
+      >
+        <mat-icon matListItemIcon>credit_card</mat-icon>
+        <span matListItemTitle>Subscription</span>
+      </a>
+
+      <mat-divider class="nav-divider"></mat-divider>
+
+      <!-- Utility Section -->
+      <!-- Home menu removed (Dashboard is primary landing page) -->
     </mat-nav-list>
   </mat-sidenav>
 

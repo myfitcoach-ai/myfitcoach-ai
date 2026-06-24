@@ -1,0 +1,68 @@
+<main class="settings-page">
+  <section class="settings-hero mat-elevation-z3">
+    <div>
+      <p class="eyebrow">App settings</p>
+      <h1>Customize your MyFitCoach experience</h1>
+      <p class="hero-copy">Manage appearance, units, notifications, privacy, and account actions from one place.</p>
+    </div>
+  </section>
+
+  <section class="settings-grid">
+    <mat-card class="settings-card">
+      <p class="card-title">Theme</p>
+      <div class="option-row">
+        <span>Light mode</span>
+        <strong>Active</strong>
+      </div>
+      <div class="option-row">
+        <span>Dark mode</span>
+        <strong>Available</strong>
+      </div>
+    </mat-card>
+
+    <mat-card class="settings-card">
+      <p class="card-title">Units</p>
+      <div class="option-row">
+        <span>lbs / in</span>
+        <strong>Selected</strong>
+      </div>
+      <div class="option-row">
+        <span>kg / cm</span>
+        <strong>Available</strong>
+      </div>
+    </mat-card>
+
+    <mat-card class="settings-card">
+      <p class="card-title">Notifications</p>
+      <div class="option-row" *ngFor="let item of notifications">
+        <span>{{ item.label }}</span>
+        <strong>{{ item.value }}</strong>
+      </div>
+    </mat-card>
+
+    <mat-card class="settings-card">
+      <p class="card-title">Privacy</p>
+      <div class="option-row" *ngFor="let item of privacy">
+        <span>{{ item.label }}</span>
+        <strong>{{ item.value }}</strong>
+      </div>
+    </mat-card>
+
+    <mat-card class="settings-card account-card">
+      <p class="card-title">Account actions</p>
+      <div class="action-buttons">
+        <button mat-flat-button color="primary">Change Password</button>
+        <button mat-flat-button color="primary">Export Data</button>
+        <button mat-flat-button color="warn">Delete Account</button>
+      </div>
+    </mat-card>
+
+    <mat-card class="settings-card save-card">
+      <p class="card-title">Quick actions</p>
+      <div class="action-buttons">
+        <button mat-flat-button color="primary">Save Settings</button>
+        <button mat-stroked-button>Reset Defaults</button>
+      </div>
+    </mat-card>
+  </section>
+</main>

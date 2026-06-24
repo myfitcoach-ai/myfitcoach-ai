@@ -1,0 +1,26 @@
+<main class="onboarding-page">
+  <section class="onboarding-hero mat-elevation-z3">
+    <div>
+      <p class="eyebrow">Set up your fitness journey</p>
+      <h1>Complete your onboarding and start training smarter.</h1>
+      <p class="hero-copy">Quickly configure your goals, body profile, training level, nutrition preference, and AI coach setup.</p>
+    </div>
+    <div class="progress-pill">Step {{ activeStep }} of {{ steps.length }}</div>
+  </section>
+
+  <section class="steps-grid">
+    <mat-card class="step-card mat-elevation-z3" *ngFor="let step of steps; let i = index" [class.active-step]="i + 1 === activeStep">
+      <span class="step-index">Step {{ i + 1 }}</span>
+      <h2>{{ step.title }}</h2>
+      <p>{{ step.subtitle }}</p>
+      <ul>
+        <li *ngFor="let detail of step.details">{{ detail }}</li>
+      </ul>
+    </mat-card>
+  </section>
+
+  <section class="onboarding-actions">
+    <button mat-stroked-button (click)="prevStep()" [disabled]="activeStep === 1">Back</button>
+    <button mat-flat-button color="primary" (click)="nextStep()">Continue</button>
+  </section>
+</main>

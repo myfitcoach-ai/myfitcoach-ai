@@ -1,0 +1,71 @@
+<main class="ai-coach-page">
+  <section class="hero-panel mat-elevation-z3">
+    <div class="hero-copy">
+      <p class="eyebrow">Your AI fitness coach</p>
+      <h1>Ask questions about workouts, nutrition, progress, recovery, and motivation.</h1>
+      <p class="hero-subtitle">Connect with a premium AI coach experience designed to keep your training sharp and your goals in focus.</p>
+    </div>
+    <div class="hero-cards">
+      <article class="hero-card" *ngFor="let stat of stats">
+        <span class="card-label">{{ stat.label }}</span>
+        <strong>{{ stat.value }}</strong>
+      </article>
+    </div>
+  </section>
+
+  <section class="coach-grid">
+    <div class="chat-column">
+      <div class="chat-header">
+        <div>
+          <p class="eyebrow">Chat with Coach</p>
+          <h2>Ask your coach anything</h2>
+        </div>
+      </div>
+
+      <div class="chat-window" role="log" aria-live="polite">
+        <article class="chat-message user-message" *ngFor="let message of messages" [class.ai-message]="message.sender === 'ai'">
+          <span class="sender">{{ message.sender === 'ai' ? 'Coach' : 'You' }}</span>
+          <p>{{ message.text }}</p>
+        </article>
+      </div>
+
+      <div class="chat-input-row">
+        <mat-form-field appearance="outline" class="chat-input">
+          <input matInput #questionInput placeholder="Ask your coach anything..." />
+        </mat-form-field>
+        <button mat-flat-button color="primary" (click)="sendQuestion(questionInput)">Send</button>
+      </div>
+
+      <div class="prompt-list">
+        <p class="eyebrow">Suggested prompts</p>
+        <div class="prompt-items">
+          <button mat-stroked-button *ngFor="let prompt of suggestedPrompts">{{ prompt }}</button>
+        </div>
+      </div>
+    </div>
+
+    <aside class="insights-column">
+      <mat-card class="insights-card mat-elevation-z3">
+        <p class="eyebrow">Coach insights</p>
+        <h2>Insights for today</h2>
+        <div class="insight-list">
+          <article class="insight-item" *ngFor="let insight of insights">
+            <span class="insight-title">{{ insight.title }}</span>
+            <strong>{{ insight.value }}</strong>
+            <p>{{ insight.description }}</p>
+          </article>
+        </div>
+      </mat-card>
+
+      <mat-card class="quick-actions-card mat-elevation-z3">
+        <p class="eyebrow">Quick actions</p>
+        <div class="quick-action-buttons">
+          <button mat-flat-button color="primary" *ngFor="let action of actions">
+            <mat-icon>{{ action.icon }}</mat-icon>
+            {{ action.label }}
+          </button>
+        </div>
+      </mat-card>
+    </aside>
+  </section>
+</main>

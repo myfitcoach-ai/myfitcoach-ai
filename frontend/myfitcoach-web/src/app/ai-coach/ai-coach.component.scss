@@ -1,0 +1,238 @@
+.ai-coach-page {
+  display: grid;
+  gap: 1.5rem;
+  padding: 1.5rem 1.5rem 2rem;
+}
+
+.hero-panel {
+  display: grid;
+  grid-template-columns: 1.7fr 1fr;
+  gap: 1.5rem;
+  padding: 1.75rem;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, #1e3160, #142146);
+  color: white;
+}
+
+.hero-copy {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.hero-copy .eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  opacity: 0.88;
+}
+
+.hero-copy h1 {
+  margin: 0;
+  font-size: clamp(2rem, 2.5vw, 2.7rem);
+  line-height: 1.05;
+}
+
+.hero-subtitle {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.78);
+  max-width: 38rem;
+}
+
+.hero-cards {
+  display: grid;
+  gap: 1rem;
+}
+
+.hero-card {
+  padding: 1.15rem 1.2rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.12);
+  display: grid;
+  gap: 0.35rem;
+}
+
+.card-label {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.92rem;
+}
+
+.hero-card strong {
+  font-size: 1.5rem;
+}
+
+.coach-grid {
+  display: grid;
+  grid-template-columns: 2.2fr 1fr;
+  gap: 1rem;
+}
+
+.chat-column {
+  display: grid;
+  gap: 1rem;
+}
+
+.chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chat-header .eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin: 0;
+  color: #4b5a7a;
+}
+
+.chat-header h2 {
+  margin: 0.4rem 0 0;
+}
+
+.chat-window {
+  min-height: 320px;
+  border-radius: 1rem;
+  background: #f8f9ff;
+  padding: 1rem;
+  display: grid;
+  gap: 0.75rem;
+  overflow-y: auto;
+}
+
+.chat-message {
+  max-width: 82%;
+  padding: 1rem;
+  border-radius: 1rem;
+  background: #ffffff;
+  box-shadow: 0 1px 16px rgba(24, 51, 94, 0.06);
+}
+
+.user-message {
+  justify-self: start;
+}
+
+.ai-message {
+  justify-self: end;
+  background: #e9eefb;
+}
+
+.sender {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #4b5a7a;
+  margin-bottom: 0.35rem;
+}
+
+.chat-message p {
+  margin: 0;
+  color: #1f2a47;
+  line-height: 1.6;
+}
+
+.chat-input-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.9rem;
+  align-items: center;
+}
+
+.chat-input {
+  width: 100%;
+}
+
+.prompt-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.prompt-list .eyebrow {
+  margin: 0;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #5e6a87;
+}
+
+.prompt-items {
+  display: grid;
+  gap: 0.6rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.prompt-items button {
+  justify-content: flex-start;
+  text-transform: none;
+}
+
+.insights-column {
+  display: grid;
+  gap: 1rem;
+}
+
+.insights-card,
+.quick-actions-card {
+  padding: 1.5rem;
+  border-radius: 1rem;
+  background: #ffffff;
+  box-shadow: 0 1px 18px rgba(20, 38, 72, 0.06);
+}
+
+.insights-card .eyebrow,
+.quick-actions-card .eyebrow {
+  margin: 0;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #4b5a7a;
+}
+
+.insight-list {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.insight-item {
+  padding: 1rem;
+  border-radius: 1rem;
+  background: #f7f9ff;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.insight-item strong {
+  font-size: 1rem;
+}
+
+.quick-action-buttons {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.quick-action-buttons button {
+  justify-content: flex-start;
+  gap: 0.75rem;
+  text-transform: none;
+}
+
+@media (max-width: 1080px) {
+  .hero-panel,
+  .coach-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .prompt-items {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .ai-coach-page {
+    padding: 1rem;
+  }
+
+  .chat-window {
+    min-height: 260px;
+  }
+}

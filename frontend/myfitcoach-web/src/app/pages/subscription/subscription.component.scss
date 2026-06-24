@@ -1,0 +1,108 @@
+.subscription-page {
+  padding: 1.5rem 1.5rem 2rem;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.subscription-hero {
+  border-radius: 1rem;
+  padding: 1.75rem;
+  background: linear-gradient(135deg, #283d75, #14244a);
+  color: white;
+}
+
+.hero-copy {
+  margin: 0.75rem 0 0;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.plan-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.plan-card {
+  padding: 1.5rem;
+  border-radius: 1rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.free-plan {
+  background: #f5f7ff;
+}
+
+.premium-plan {
+  background: #1e3367;
+  color: white;
+}
+
+.plan-label {
+  margin: 0;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+}
+
+.plan-card h2 {
+  margin: 0;
+}
+
+.plan-card ul {
+  margin: 0;
+  padding-left: 1rem;
+}
+
+.plan-card li {
+  margin-bottom: 0.75rem;
+}
+
+.billing-faq-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 1rem;
+}
+
+.billing-card,
+.faq-card {
+  padding: 1.5rem;
+  border-radius: 1rem;
+  background: #ffffff;
+  box-shadow: 0 1px 20px rgba(18, 36, 68, 0.08);
+}
+
+.card-title {
+  margin: 0 0 1rem;
+  font-weight: 700;
+}
+
+.billing-detail,
+.faq-item {
+  display: grid;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+}
+
+.billing-detail strong,
+.faq-item strong {
+  color: #1f2a47;
+}
+
+.faq-item p {
+  margin: 0;
+  color: #6b7390;
+}
+
+@media (max-width: 1080px) {
+  .plan-grid,
+  .billing-faq-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .subscription-page {
+    padding: 1rem;
+  }
+}

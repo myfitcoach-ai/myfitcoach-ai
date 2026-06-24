@@ -1,0 +1,231 @@
+.progress-page {
+  display: grid;
+  gap: 1.5rem;
+  padding: 1.5rem 1.5rem 2rem;
+}
+
+.progress-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(280px, 1fr);
+  gap: 1.5rem;
+  padding: 1.75rem;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, #23355f, #16213d);
+  color: white;
+}
+
+.hero-copy {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.hero-copy .eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin: 0;
+  opacity: 0.85;
+}
+
+.hero-copy h1 {
+  margin: 0;
+  font-size: clamp(2rem, 2.4vw, 2.6rem);
+  line-height: 1.05;
+}
+
+.hero-subtitle {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.82);
+  max-width: 45rem;
+}
+
+.hero-highlights {
+  display: grid;
+  gap: 1rem;
+}
+
+.highlight-card {
+  padding: 1.25rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.12);
+  display: grid;
+  gap: 0.35rem;
+}
+
+.highlight-label {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.95rem;
+}
+
+.highlight-card strong {
+  font-size: 1.75rem;
+}
+
+.progress-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.summary-card {
+  background: #fff;
+  border-radius: 1rem;
+  padding: 1.25rem;
+  box-shadow: 0 1px 20px rgba(20, 38, 72, 0.08);
+  display: grid;
+  gap: 1rem;
+}
+
+.summary-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #1f2a47;
+}
+
+.summary-main {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.summary-detail {
+  margin: 0;
+  color: #6b7390;
+}
+
+.progress-detail-section,
+.measurement-strength-grid,
+.coach-actions-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+}
+
+.timeline-cards {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.timeline-card {
+  background: #ffffff;
+  border-radius: 1rem;
+  padding: 1.25rem;
+  box-shadow: 0 1px 18px rgba(20, 38, 72, 0.06);
+  display: grid;
+  gap: 0.5rem;
+}
+
+.timeline-week {
+  color: #6b7390;
+}
+
+.timeline-card strong {
+  font-size: 1.35rem;
+}
+
+.measurements-card,
+.strength-card,
+.coach-card,
+.actions-card {
+  border-radius: 1rem;
+  background: #ffffff;
+  padding: 1.5rem;
+  box-shadow: 0 1px 18px rgba(20, 38, 72, 0.06);
+}
+
+.card-header {
+  display: grid;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.measurement-list,
+.strength-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.measurement-item,
+.strength-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.95rem 1rem;
+  border-radius: 0.95rem;
+  background: #f8f9ff;
+}
+
+.measurement-item strong,
+.strength-item strong {
+  color: #1f2a47;
+}
+
+.strength-item small {
+  color: #6b7390;
+}
+
+.coach-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.coach-top mat-icon {
+  font-size: 2.5rem;
+  color: #3c5c96;
+}
+
+.coach-copy {
+  margin: 1rem 0 0;
+  color: #1f2a47;
+  line-height: 1.6;
+}
+
+.action-grid {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.action-grid button {
+  justify-content: flex-start;
+  gap: 0.75rem;
+  text-transform: none;
+}
+
+@media (max-width: 1080px) {
+  .progress-summary-grid,
+  .timeline-cards,
+  .measurement-strength-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .progress-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline-cards,
+  .measurement-strength-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .progress-page {
+    padding: 1rem;
+  }
+
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

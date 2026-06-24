@@ -1,0 +1,96 @@
+<main class="progress-page">
+  <section class="progress-hero mat-elevation-z3">
+    <div class="hero-copy">
+      <p class="eyebrow">Your transformation progress</p>
+      <h1>Track weight, measurements, strength, and consistency.</h1>
+      <p class="hero-subtitle">A premium progress dashboard designed to keep your momentum going and show gains in every workout.</p>
+    </div>
+    <div class="hero-highlights">
+      <article class="highlight-card" *ngFor="let item of highlights">
+        <span class="highlight-label">{{ item.label }}</span>
+        <strong>{{ item.value }}</strong>
+      </article>
+    </div>
+  </section>
+
+  <section class="progress-summary-grid">
+    <article class="summary-card" *ngFor="let item of summary">
+      <div class="summary-title">
+        <span>{{ item.label }}</span>
+        <mat-icon>insights</mat-icon>
+      </div>
+      <p class="summary-main">{{ item.value }}</p>
+      <p class="summary-detail">{{ item.detail }}</p>
+    </article>
+  </section>
+
+  <section class="progress-detail-section">
+    <div class="section-header">
+      <div>
+        <p class="eyebrow">Weight progress</p>
+        <h2>Weekly timeline</h2>
+      </div>
+      <span>Steady progress with consistent tracking</span>
+    </div>
+    <div class="timeline-cards">
+      <article class="timeline-card" *ngFor="let entry of weightTimeline">
+        <span class="timeline-week">{{ entry.week }}</span>
+        <strong>{{ entry.weight }}</strong>
+      </article>
+    </div>
+  </section>
+
+  <section class="measurement-strength-grid">
+    <div class="measurements-card mat-elevation-z3">
+      <div class="card-header">
+        <p class="eyebrow">Measurements</p>
+        <h2>Body stats</h2>
+      </div>
+      <div class="measurement-list">
+        <article class="measurement-item" *ngFor="let item of measurements">
+          <span>{{ item.label }}</span>
+          <strong>{{ item.value }}</strong>
+        </article>
+      </div>
+    </div>
+
+    <div class="strength-card mat-elevation-z3">
+      <div class="card-header">
+        <p class="eyebrow">Strength progress</p>
+        <h2>Previous vs current</h2>
+      </div>
+      <div class="strength-list">
+        <article class="strength-item" *ngFor="let strength of strengthProgress">
+          <span>{{ strength.label }}</span>
+          <div>
+            <small>Prev: {{ strength.previous }}</small>
+            <strong>{{ strength.current }}</strong>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="coach-actions-grid">
+    <mat-card class="coach-card mat-elevation-z3">
+      <div class="coach-top">
+        <div>
+          <p class="eyebrow">AI Progress Coach</p>
+          <h2>Smart motivation</h2>
+        </div>
+        <mat-icon>smart_toy</mat-icon>
+      </div>
+      <p class="coach-copy">{{ coachTip }}</p>
+    </mat-card>
+
+    <mat-card class="actions-card mat-elevation-z3">
+      <p class="eyebrow">Quick Actions</p>
+      <div class="action-grid">
+        <button mat-flat-button color="primary" *ngFor="let action of actions">
+          <mat-icon>{{ action.icon }}</mat-icon>
+          {{ action.label }}
+        </button>
+      </div>
+    </mat-card>
+  </section>
+</main>
