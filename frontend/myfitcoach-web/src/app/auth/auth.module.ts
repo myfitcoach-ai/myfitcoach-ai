@@ -10,7 +10,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDividerModule } from '@angular/material/divider';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { AuthRoutingModule } from './auth-routing.module';
@@ -33,7 +32,6 @@ import { ForgotPasswordComponent } from './forgot-password.component';
     MatIconModule,
     MatCheckboxModule,
     MatDividerModule,
-    MatSnackBarModule,
     MatProgressSpinnerModule
   ]
 })

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ValidationErrors } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +18,6 @@ export class RegisterComponent {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private snackBar: MatSnackBar,
     private router: Router
   ) {
     this.form = this.fb.group({
@@ -83,43 +82,31 @@ export class RegisterComponent {
 
     // Call auth service
     this.authService.register(formData).subscribe({
-      next: (response) => {
+      next: async () => {
         this.isLoading = false;
-        
-        // Show success notification
-        this.snackBar.open(
-          'Registration successful. Please sign in.',
-          'Close',
-          {
-            duration: 3000,
-            horizontalPosition: 'end',
-            verticalPosition: 'top',
-            panelClass: ['success-snackbar']
-          }
-        );
 
-        // Navigate to login after 2 seconds
-        setTimeout(() => {
-          this.router.navigate(['/auth/login']);
-        }, 2000);
+        await Swal.fire({
+          title: 'Account Created!',
+          text: 'Your account has been created successfully.',
+          icon: 'success',
+          confirmButtonText: 'Continue to Login',
+          confirmButtonColor: '#4338ca'
+        });
+
+        this.router.navigate(['/auth/login']);
       },
-      error: (error) => {
+      error: async (error) => {
         this.isLoading = false;
-        
-        // Extract error message from API or use default
-        const errorMessage = error.message || 'Something went wrong. Please try again.';
-        
-        // Show error notification
-        this.snackBar.open(
-          errorMessage,
-          'Close',
-          {
-            duration: 4000,
-            horizontalPosition: 'end',
-            verticalPosition: 'top',
-            panelClass: ['error-snackbar']
-          }
-        );
+
+        const errorMessage = error?.message?.trim() || 'Something went wrong. Please try again.';
+
+        await Swal.fire({
+          title: 'Registration Failed',
+          text: errorMessage,
+          icon: 'error',
+          confirmButtonText: 'Try Again',
+          confirmButtonColor: '#d32f2f'
+        });
       }
     });
   }

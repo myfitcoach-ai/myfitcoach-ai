@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -15,6 +16,7 @@ describe('DashboardComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [DashboardComponent],
       imports: [
+        HttpClientTestingModule,
         NoopAnimationsModule,
         MatCardModule,
         MatButtonModule,

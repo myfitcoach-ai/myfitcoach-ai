@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { WelcomeComponent } from './pages/welcome/welcome.component';
 import { AppShellComponent } from './layouts/app-shell.component';
+import { authChildGuard } from './auth/auth.guard';
 
 export const routes: Routes = [
   { path: '', component: WelcomeComponent, pathMatch: 'full' },
@@ -12,6 +13,7 @@ export const routes: Routes = [
   {
     path: '',
     component: AppShellComponent,
+    canActivateChild: [authChildGuard],
     children: [
       { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then((m) => m.DashboardModule) },
       { path: 'workouts', loadChildren: () => import('./workouts/workouts.module').then((m) => m.WorkoutsModule) },

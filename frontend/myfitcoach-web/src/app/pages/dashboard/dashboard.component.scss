@@ -3,6 +3,47 @@
   gap: 1.5rem;
 }
 
+.welcome-hero-card {
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #ffffff, #f2f7ff);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.06);
+}
+
+.welcome-copy {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.welcome-kicker {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.18rem;
+  font-size: 0.78rem;
+  color: #64748b;
+}
+
+.welcome-copy h2 {
+  margin: 0;
+  font-size: clamp(1.75rem, 2.5vw, 2.4rem);
+  line-height: 1.1;
+  color: #1e293b;
+}
+
+.welcome-copy p {
+  margin: 0;
+  color: #475569;
+  font-size: 1rem;
+}
+
+.welcome-date {
+  margin-top: 0.35rem;
+  color: #1d4ed8;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
 .overview-header {
   display: flex;
   justify-content: space-between;
@@ -302,5 +343,9 @@
 
   .actions-grid {
     grid-template-columns: 1fr;
+  }
+
+  .welcome-hero-card {
+    padding: 1.25rem;
   }
 }

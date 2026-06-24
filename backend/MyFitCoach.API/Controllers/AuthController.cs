@@ -3,6 +3,10 @@ using Microsoft.EntityFrameworkCore;
 using MyFitCoach.API.Data;
 using MyFitCoach.API.DTOs;
 using MyFitCoach.API.Models;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace MyFitCoach.API.Controllers;
 
@@ -12,9 +16,12 @@ public class AuthController : ControllerBase
 {
     private readonly AppDbContext _context;
 
-    public AuthController(AppDbContext context)
+    private readonly IConfiguration _configuration;
+
+    public AuthController(AppDbContext context, IConfiguration configuration)
     {
         _context = context;
+        _configuration = configuration;
     }
 
     [HttpPost("register")]
@@ -67,13 +74,48 @@ public class AuthController : ControllerBase
             return BadRequest("Invalid email or password.");
         }
 
+        var token = CreateToken(user);
+
         return Ok(new
         {
             message = "Login successful.",
-            user.Id,
-            user.FullName,
-            user.Email,
-            user.Role
+            token,
+            user = new
+            {
+                user.Id,
+                user.FullName,
+                user.Email,
+                user.Role
+            }
         });
+    }
+
+    private string CreateToken(User user)
+    {
+        var claims = new List<Claim>
+    {
+        new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+        new Claim(ClaimTypes.Name, user.FullName),
+        new Claim(ClaimTypes.Email, user.Email),
+        new Claim(ClaimTypes.Role, user.Role)
+    };
+
+        var key = new SymmetricSecurityKey(
+            Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]!));
+
+        var credentials = new SigningCredentials(
+            key,
+            SecurityAlgorithms.HmacSha256);
+
+        var token = new JwtSecurityToken(
+            issuer: _configuration["Jwt:Issuer"],
+            audience: _configuration["Jwt:Audience"],
+            claims: claims,
+            expires: DateTime.UtcNow.AddMinutes(
+                Convert.ToDouble(_configuration["Jwt:ExpireMinutes"])),
+            signingCredentials: credentials
+        );
+
+        return new JwtSecurityTokenHandler().WriteToken(token);
     }
 }

@@ -34,9 +34,10 @@ export interface AuthUser {
 }
 
 export interface LoginResponse {
+  token?: string;
+  user?: AuthUser;
   success?: boolean;
   message?: string;
-  user?: AuthUser;
   data?: AuthUser;
   [key: string]: unknown;
 }
@@ -73,6 +74,61 @@ export class AuthService {
         return throwError(() => this.handleError(error));
       })
     );
+  }
+
+  logout(): void {
+    localStorage.removeItem('token');
+    localStorage.removeItem('currentUser');
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem('token');
+  }
+
+  getCurrentUser(): AuthUser | null {
+    const raw = localStorage.getItem('currentUser');
+    if (!raw) {
+      return null;
+    }
+
+    try {
+      return JSON.parse(raw) as AuthUser;
+    } catch {
+      return null;
+    }
+  }
+
+  isLoggedIn(): boolean {
+    const token = this.getToken();
+    if (!token) {
+      return false;
+    }
+
+    const payload = this.decodeJwtPayload(token);
+    const exp = payload?.['exp'];
+
+    if (!payload || typeof exp !== 'number') {
+      return true;
+    }
+
+    const now = Math.floor(Date.now() / 1000);
+    return exp > now;
+  }
+
+  private decodeJwtPayload(token: string): Record<string, unknown> | null {
+    const parts = token.split('.');
+    if (parts.length !== 3) {
+      return null;
+    }
+
+    try {
+      const normalized = parts[1].replace(/-/g, '+').replace(/_/g, '/');
+      const padded = normalized.padEnd(normalized.length + (4 - normalized.length % 4) % 4, '=');
+      const decoded = atob(padded);
+      return JSON.parse(decoded) as Record<string, unknown>;
+    } catch {
+      return null;
+    }
   }
 
   /**

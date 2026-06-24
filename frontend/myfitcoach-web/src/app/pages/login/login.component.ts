@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService, AuthUser, LoginResponse } from '../../services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +16,6 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private snackBar: MatSnackBar,
     private router: Router
   ) {
     this.form = this.fb.group({
@@ -46,19 +45,17 @@ export class LoginComponent {
       next: (response: LoginResponse) => {
         this.isLoading = false;
 
+        const token = this.extractToken(response);
         const user = this.extractUser(response);
-        localStorage.setItem('currentUser', JSON.stringify(user));
 
-        this.snackBar.open('Login successful. Welcome back!', 'Close', {
-          duration: 3000,
-          horizontalPosition: 'end',
-          verticalPosition: 'top',
-          panelClass: ['success-snackbar']
-        });
+        if (token) {
+          localStorage.setItem('token', token);
+        }
+        localStorage.setItem('currentUser', JSON.stringify(user));
 
         this.router.navigate(['/dashboard']);
       },
-      error: (error: { message?: string }) => {
+      error: async (error: { message?: string }) => {
         this.isLoading = false;
 
         const backendMessage = error?.message?.trim();
@@ -66,14 +63,34 @@ export class LoginComponent {
           ? backendMessage
           : 'Invalid email or password.';
 
-        this.snackBar.open(message, 'Close', {
-          duration: 4000,
-          horizontalPosition: 'end',
-          verticalPosition: 'top',
-          panelClass: ['error-snackbar']
+        await Swal.fire({
+          title: 'Login Failed',
+          text: message,
+          icon: 'error',
+          confirmButtonText: 'Try Again',
+          confirmButtonColor: '#d32f2f'
         });
       }
     });
+  }
+
+  private extractToken(response: LoginResponse): string | null {
+    const directToken = response?.token;
+    if (typeof directToken === 'string' && directToken.trim()) {
+      return directToken;
+    }
+
+    const dataToken = (response?.data as { token?: unknown } | undefined)?.token;
+    if (typeof dataToken === 'string' && dataToken.trim()) {
+      return dataToken;
+    }
+
+    const userToken = (response?.user as { token?: unknown } | undefined)?.token;
+    if (typeof userToken === 'string' && userToken.trim()) {
+      return userToken;
+    }
+
+    return null;
   }
 
   private extractUser(response: LoginResponse): AuthUser {
