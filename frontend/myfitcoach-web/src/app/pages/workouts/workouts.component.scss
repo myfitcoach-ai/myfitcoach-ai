@@ -1,42 +1,47 @@
-.workouts-overview {
-  display: grid;
-  gap: 1rem;
-}
+.workouts-overview{display:grid;gap:1rem}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:1rem;align-items:center;padding:1rem;border-radius:1rem;background:linear-gradient(135deg,#fff,#eef4ff)}
+.hero-copy h1,.section-title,.empty-title,.plan-title,.plan-description,.exercise-title{margin:0}
+.hero-copy .muted,.section-subtitle,.exercise-subtitle{color:#667085}
+.hero-actions,.week-days,.plan-meta-row,.plan-actions,.exercise-section-head,.exercise-item-actions{display:flex;gap:.5rem;flex-wrap:wrap}
+.hero-actions{margin-top:.75rem}
+.hero-image{height:160px;border-radius:.75rem;background:center/cover no-repeat linear-gradient(180deg,rgba(18,38,74,.7),rgba(29,78,159,.5)),url('https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1000&q=80')}
 
-.hero {
-  display: grid;
-  grid-template-columns: 1fr 360px;
-  gap: 1rem;
-  background: linear-gradient(135deg, #ffffff, #eef4ff);
-  border-radius: 1rem;
-  padding: 1rem;
-  align-items: center;
-}
+.summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.summary-card,.recent-card,.plan-card{padding:1rem;border-radius:.85rem}
+.summary-card{background:#111827;color:#fff}
+.summary-card .label{color:#9ca3af;font-size:.85rem}.summary-card h2{margin:.35rem 0}.summary-card .sub{color:#d1d5db;font-size:.9rem}
 
-.hero-copy h1 { margin: 0; }
-.hero-copy .muted { color: #667085; }
-.hero-actions { margin-top: 0.75rem; display:flex; gap:0.5rem; flex-wrap:wrap; }
-.hero-image { height:160px; border-radius:0.75rem; background-image: linear-gradient(180deg, rgba(18,38,74,0.7), rgba(29,78,159,0.5)), url('https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1000&q=80'); background-size:cover; background-position:center; }
+.weekly-grid,.plans-grid,.exercise-section,.exercise-list{display:grid;gap:.85rem}
+.week-head,.section-title,.empty-title,.plan-title{font-weight:700}.week-head{color:#374151}
+.week-days .day{min-width:88px;padding:.6rem .8rem;border-radius:.6rem;text-align:center;background:#fff}
+.week-days .day.done{color:#fff;background:linear-gradient(135deg,#4ade80,#16a34a)}
 
-.summary-grid { display:grid; grid-template-columns: repeat(4,1fr); gap:1rem; }
-.summary-card { padding:1rem; border-radius:0.85rem; background:#111827; color:#fff; }
-.summary-card .label { color:#9ca3af; font-size:0.85rem; }
-.summary-card h2 { margin:0.35rem 0; }
-.summary-card .sub { color:#d1d5db; font-size:0.9rem; }
+.management-grid{display:grid;grid-template-columns:1fr;gap:1rem}
+.section-header{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:1rem}
+.goal-badge,.duration-badge,.plan-date,.edit-button,.delete-button,.exercise-toggle-button,.add-exercise-button{display:inline-flex;align-items:center;gap:.35rem}
+.goal-badge,.duration-badge{padding:.35rem .7rem;border-radius:999px;font-size:.8rem;font-weight:700}
+.goal-badge{background:rgba(67,56,202,.1);color:#4338ca}.duration-badge{background:rgba(14,116,144,.1);color:#0f766e}
+.goal-badge mat-icon,.duration-badge mat-icon,.plan-date mat-icon,.plan-actions mat-icon,.exercise-item-actions mat-icon{width:16px;height:16px;font-size:16px}
 
-.weekly-grid { display:grid; gap:0.5rem; }
-.week-head { font-weight:700; color:#374151; }
-.week-days { display:flex; gap:0.5rem; flex-wrap:wrap; }
-.week-days .day { padding:0.6rem 0.8rem; border-radius:0.6rem; background:#fff; min-width:88px; text-align:center; }
-.week-days .day.done { background: linear-gradient(135deg,#4ade80,#16a34a); color:#fff; }
+.edit-button,.add-exercise-button{border-color:rgba(37,99,235,.18);color:#1d4ed8;background:rgba(37,99,235,.03)}
+.exercise-toggle-button,.delete-button{border-color:rgba(15,23,42,.12)}
+.delete-button{color:#475569;background:rgba(148,163,184,.05)}
+.delete-button:hover:not([disabled]){border-color:rgba(220,38,38,.25);color:#b91c1c}
 
-.recent-card { padding:1rem; border-radius:0.85rem; }
+.state-card{display:grid;place-items:center;gap:.5rem;padding:1.3rem;text-align:center;border:1px dashed #d0d5dd;border-radius:.85rem;background:#f8fafc}
+.loading-card{grid-auto-flow:column;justify-content:center}.empty-title{color:#1f2937}
 
-@media (max-width: 900px) {
-  .hero { grid-template-columns: 1fr; }
-  .summary-grid { grid-template-columns: repeat(2,1fr); }
-}
+.plan-card{display:grid;gap:.85rem;border:1px solid rgba(15,23,42,.08);background:linear-gradient(180deg,#fff,#fbfdff)}
+.plan-card-head,.exercise-item-head{display:flex;justify-content:space-between;align-items:flex-start;gap:.7rem;flex-wrap:wrap}
+.plan-date{color:#64748b;font-size:.78rem}.plan-description{color:#475569;line-height:1.5}
 
-@media (max-width: 520px) {
-  .summary-grid { grid-template-columns: 1fr; }
-}
+.exercise-section{padding-top:.65rem;border-top:1px dashed rgba(15,23,42,.12)}
+.exercise-subtitle{margin:.1rem 0 0;font-size:.8rem}
+.exercise-loading{display:flex;align-items:center;gap:.5rem;color:#64748b}
+.exercise-empty{padding:.55rem .7rem;border-radius:.55rem;background:#f8fafc;color:#64748b}
+.exercise-item{display:grid;gap:.35rem;padding:.7rem;border-radius:.65rem;background:#f8fafc;border:1px solid rgba(15,23,42,.08)}
+.muscle-badge{padding:.2rem .55rem;border-radius:999px;font-size:.75rem;font-weight:600;color:#0f766e;background:rgba(20,184,166,.14)}
+.exercise-item-meta,.exercise-item-notes{margin:0;font-size:.82rem;color:#475569}
+
+@media (max-width:900px){.hero{grid-template-columns:1fr}.summary-grid{grid-template-columns:repeat(2,1fr)}.management-grid{grid-template-columns:1fr}}
+@media (max-width:520px){.summary-grid{grid-template-columns:1fr}.loading-card{grid-auto-flow:row}.plan-card-head,.plan-actions,.exercise-section-head,.exercise-item-actions{flex-direction:column;align-items:stretch}.plan-actions button,.exercise-section-head button,.exercise-item-actions button{width:100%}}

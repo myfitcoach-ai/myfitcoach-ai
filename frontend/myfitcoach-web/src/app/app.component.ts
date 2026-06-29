@@ -15,7 +15,8 @@ export class AppComponent implements OnInit {
   constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {
-    const path = this.router.url;
+    const browserPath = typeof window !== 'undefined' ? window.location.pathname : this.router.url;
+    const path = browserPath || this.router.url;
 
     if (path === '/' || path === '/welcome') {
       if (this.authService.isLoggedIn()) {

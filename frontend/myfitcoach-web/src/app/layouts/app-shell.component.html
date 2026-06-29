@@ -5,162 +5,157 @@
     [opened]="!(isHandset$ | async)"
     class="app-sidenav"
   >
-    <!-- Brand -->
-    <div class="brand">
-      <span class="brand-icon">
-        <mat-icon>fitness_center</mat-icon>
-      </span>
-      <span class="brand-text">MyFitCoach AI</span>
-    </div>
+    <div class="sidenav-inner">
+      <div class="brand">
+        <span class="brand-icon">
+          <mat-icon>fitness_center</mat-icon>
+        </span>
+        <span class="brand-text">MyFitCoach AI</span>
+      </div>
 
-    <div class="user-panel" aria-label="Current user profile">
-      <div class="user-avatar" aria-hidden="true">{{ currentUser.initials }}</div>
-      <div class="user-meta">
-        <p class="user-name">{{ currentUser.fullName }}</p>
-        <p class="user-email">{{ currentUser.email }}</p>
+      <div class="user-panel" aria-label="Current user profile">
+        <div class="user-avatar" aria-hidden="true">{{ currentUser.initials }}</div>
+        <div class="user-meta">
+          <p class="user-name">{{ currentUser.fullName }}</p>
+          <p class="user-email">{{ currentUser.email }}</p>
+        </div>
+      </div>
+
+      <div class="sidenav-scroll">
+        <mat-nav-list>
+          <a
+            mat-list-item
+            routerLink="/dashboard"
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="nav-item"
+          >
+            <mat-icon matListItemIcon>dashboard</mat-icon>
+            <span matListItemTitle>Dashboard</span>
+          </a>
+
+          <mat-divider class="nav-divider"></mat-divider>
+
+          <mat-list>
+            <mat-expansion-panel class="nav-expansion-panel" [expanded]="isWorkoutsOpen()">
+              <mat-expansion-panel-header class="nav-expansion-header">
+                <mat-icon matListItemIcon class="expansion-icon">
+                  fitness_center
+                </mat-icon>
+                <span matListItemTitle class="expansion-title">Workouts</span>
+              </mat-expansion-panel-header>
+
+              <mat-nav-list class="nested-nav-list">
+                <a
+                  mat-list-item
+                  routerLink="/workouts"
+                  routerLinkActive="active-link"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  class="nested-nav-item"
+                >
+                  <mat-icon matListItemIcon>view_week</mat-icon>
+                  <span matListItemTitle>Overview</span>
+                </a>
+                <a
+                  mat-list-item
+                  routerLink="/workouts/today"
+                  routerLinkActive="active-link"
+                  class="nested-nav-item"
+                >
+                  <mat-icon matListItemIcon>play_circle</mat-icon>
+                  <span matListItemTitle>Today's Workout</span>
+                </a>
+                <a
+                  mat-list-item
+                  routerLink="/workouts/plans"
+                  routerLinkActive="active-link"
+                  class="nested-nav-item"
+                >
+                  <mat-icon matListItemIcon>library_books</mat-icon>
+                  <span matListItemTitle>Plans</span>
+                </a>
+              </mat-nav-list>
+            </mat-expansion-panel>
+          </mat-list>
+
+          <mat-divider class="nav-divider"></mat-divider>
+
+          <a
+            mat-list-item
+            routerLink="/nutrition"
+            routerLinkActive="active-link"
+            class="nav-item"
+          >
+            <mat-icon matListItemIcon>restaurant</mat-icon>
+            <span matListItemTitle>Nutrition</span>
+          </a>
+
+          <a
+            mat-list-item
+            routerLink="/progress"
+            routerLinkActive="active-link"
+            class="nav-item"
+          >
+            <mat-icon matListItemIcon>trending_up</mat-icon>
+            <span matListItemTitle>Progress</span>
+          </a>
+
+          <mat-divider class="nav-divider"></mat-divider>
+
+          <a
+            mat-list-item
+            routerLink="/ai-coach"
+            routerLinkActive="active-link"
+            class="nav-item"
+          >
+            <mat-icon matListItemIcon>smart_toy</mat-icon>
+            <span matListItemTitle>AI Coach</span>
+          </a>
+
+          <a
+            mat-list-item
+            routerLink="/analytics"
+            routerLinkActive="active-link"
+            class="nav-item"
+          >
+            <mat-icon matListItemIcon>analytics</mat-icon>
+            <span matListItemTitle>Analytics</span>
+          </a>
+
+          <a
+            mat-list-item
+            routerLink="/profile"
+            routerLinkActive="active-link"
+            class="nav-item"
+          >
+            <mat-icon matListItemIcon>person</mat-icon>
+            <span matListItemTitle>Profile</span>
+          </a>
+
+          <a
+            mat-list-item
+            routerLink="/settings"
+            routerLinkActive="active-link"
+            class="nav-item"
+          >
+            <mat-icon matListItemIcon>settings</mat-icon>
+            <span matListItemTitle>Settings</span>
+          </a>
+
+          <a
+            mat-list-item
+            routerLink="/subscription"
+            routerLinkActive="active-link"
+            class="nav-item"
+          >
+            <mat-icon matListItemIcon>credit_card</mat-icon>
+            <span matListItemTitle>Subscription</span>
+          </a>
+
+          <mat-divider class="nav-divider"></mat-divider>
+        </mat-nav-list>
       </div>
     </div>
-
-    <!-- Navigation -->
-    <mat-nav-list>
-      <!-- Primary Section -->
-      <a
-        mat-list-item
-        routerLink="/dashboard"
-        routerLinkActive="active-link"
-        [routerLinkActiveOptions]="{ exact: true }"
-        class="nav-item"
-      >
-        <mat-icon matListItemIcon>dashboard</mat-icon>
-        <span matListItemTitle>Dashboard</span>
-      </a>
-
-      <mat-divider class="nav-divider"></mat-divider>
-
-      <!-- Workouts Section (Nested) -->
-      <mat-list>
-        <mat-expansion-panel class="nav-expansion-panel" [expanded]="isWorkoutsOpen()">
-          <mat-expansion-panel-header class="nav-expansion-header">
-            <mat-icon matListItemIcon class="expansion-icon">
-              fitness_center
-            </mat-icon>
-            <span matListItemTitle class="expansion-title">Workouts</span>
-          </mat-expansion-panel-header>
-
-          <mat-nav-list class="nested-nav-list">
-            <a
-              mat-list-item
-              routerLink="/workouts"
-              routerLinkActive="active-link"
-              [routerLinkActiveOptions]="{ exact: true }"
-              class="nested-nav-item"
-            >
-              <mat-icon matListItemIcon>view_week</mat-icon>
-              <span matListItemTitle>Overview</span>
-            </a>
-            <a
-              mat-list-item
-              routerLink="/workouts/today"
-              routerLinkActive="active-link"
-              class="nested-nav-item"
-            >
-              <mat-icon matListItemIcon>play_circle</mat-icon>
-              <span matListItemTitle>Today's Workout</span>
-            </a>
-            <a
-              mat-list-item
-              routerLink="/workouts/plans"
-              routerLinkActive="active-link"
-              class="nested-nav-item"
-            >
-              <mat-icon matListItemIcon>library_books</mat-icon>
-              <span matListItemTitle>Plans</span>
-            </a>
-          </mat-nav-list>
-        </mat-expansion-panel>
-      </mat-list>
-
-      <mat-divider class="nav-divider"></mat-divider>
-
-      <!-- Health & Wellness Section -->
-      <a
-        mat-list-item
-        routerLink="/nutrition"
-        routerLinkActive="active-link"
-        class="nav-item"
-      >
-        <mat-icon matListItemIcon>restaurant</mat-icon>
-        <span matListItemTitle>Nutrition</span>
-      </a>
-
-      <a
-        mat-list-item
-        routerLink="/progress"
-        routerLinkActive="active-link"
-        class="nav-item"
-      >
-        <mat-icon matListItemIcon>trending_up</mat-icon>
-        <span matListItemTitle>Progress</span>
-      </a>
-
-      <mat-divider class="nav-divider"></mat-divider>
-
-      <!-- AI Assistant Section -->
-      <a
-        mat-list-item
-        routerLink="/ai-coach"
-        routerLinkActive="active-link"
-        class="nav-item"
-      >
-        <mat-icon matListItemIcon>smart_toy</mat-icon>
-        <span matListItemTitle>AI Coach</span>
-      </a>
-
-      <a
-        mat-list-item
-        routerLink="/analytics"
-        routerLinkActive="active-link"
-        class="nav-item"
-      >
-        <mat-icon matListItemIcon>analytics</mat-icon>
-        <span matListItemTitle>Analytics</span>
-      </a>
-
-      <a
-        mat-list-item
-        routerLink="/profile"
-        routerLinkActive="active-link"
-        class="nav-item"
-      >
-        <mat-icon matListItemIcon>person</mat-icon>
-        <span matListItemTitle>Profile</span>
-      </a>
-
-      <a
-        mat-list-item
-        routerLink="/settings"
-        routerLinkActive="active-link"
-        class="nav-item"
-      >
-        <mat-icon matListItemIcon>settings</mat-icon>
-        <span matListItemTitle>Settings</span>
-      </a>
-
-      <a
-        mat-list-item
-        routerLink="/subscription"
-        routerLinkActive="active-link"
-        class="nav-item"
-      >
-        <mat-icon matListItemIcon>credit_card</mat-icon>
-        <span matListItemTitle>Subscription</span>
-      </a>
-
-      <mat-divider class="nav-divider"></mat-divider>
-
-      <!-- Utility Section -->
-      <!-- Home menu removed (Dashboard is primary landing page) -->
-    </mat-nav-list>
   </mat-sidenav>
 
   <mat-sidenav-content class="app-content">

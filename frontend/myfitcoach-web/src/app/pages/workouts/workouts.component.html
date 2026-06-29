@@ -1,17 +1,22 @@
 <section class="workouts-overview">
   <div class="hero">
     <div class="hero-copy">
-      <p class="eyebrow">Workouts</p>
-      <h1>Your training this week</h1>
-      <p class="muted">Stay consistent — pick up where you left off or start a fresh session.</p>
+      <p class="eyebrow">Workout plans</p>
+      <h1>Your training plans</h1>
+      <p class="muted">Manage the workout plans you want to follow without changing the rest of your dashboard flow.</p>
       <div class="hero-actions">
         <button mat-flat-button color="primary" routerLink="/workouts/today">Start Today's Workout</button>
         <button mat-stroked-button routerLink="/workouts/plans">View Plans</button>
-        <button mat-stroked-button>Create Plan</button>
+        <button mat-stroked-button type="button" (click)="startCreate()">+ Create Plan</button>
       </div>
     </div>
     <div class="hero-image"></div>
   </div>
+
+  <mat-card *ngIf="isLoading" class="state-card loading-card">
+    <mat-spinner diameter="32"></mat-spinner>
+    <p>Loading workout plans...</p>
+  </mat-card>
 
   <div class="summary-grid">
     <mat-card *ngFor="let s of summaries" class="summary-card">
@@ -22,26 +27,116 @@
   </div>
 
   <div class="weekly-grid">
-    <div class="week-head">Weekly schedule</div>
+    <div class="week-head">Plan lineup</div>
     <div class="week-days">
-      <div *ngFor="let d of weekly" class="day" [class.done]="d.done">
-        <div class="day-name">{{ d.day }}</div>
-        <div class="day-work">{{ d.name }}</div>
+      <div *ngFor="let item of highlights" class="day" [class.done]="item.emphasized">
+        <div class="day-name">{{ item.title }}</div>
+        <div class="day-work">{{ item.meta }}</div>
+      </div>
+      <div *ngIf="!isLoading && highlights.length === 0" class="day">
+        <div class="day-name">No plans yet</div>
+        <div class="day-work">Create a workout plan to see it here.</div>
       </div>
     </div>
   </div>
 
-  <mat-card class="recent-card">
-    <div class="section-header">
-      <div>
-        <p class="section-title">Recent workouts</p>
+  <div class="management-grid">
+    <mat-card class="recent-card">
+      <div class="section-header">
+        <div>
+          <p class="section-title">Workout plans</p>
+          <p class="section-subtitle">Manage the workout plans currently stored in your account.</p>
+        </div>
       </div>
-    </div>
-    <mat-list>
-      <mat-list-item *ngFor="let r of recent">
-        <div mat-line>{{ r.title }}</div>
-        <div mat-line class="muted">{{ r.minutes }} min · {{ r.calories }} kcal</div>
-      </mat-list-item>
-    </mat-list>
-  </mat-card>
+
+      <div *ngIf="!isLoading && recent.length === 0" class="state-card empty-card">
+        <p class="empty-title">No workout plans yet</p>
+        <p class="muted">Create your first workout plan to start organizing your training goals.</p>
+      </div>
+
+      <div *ngIf="recent.length > 0" class="plans-grid">
+        <article *ngFor="let r of recent; trackBy: trackByWorkout" class="plan-card">
+          <div class="plan-card-head">
+            <div>
+              <h3 class="plan-title">{{ r.title }}</h3>
+              <div class="plan-meta-row">
+                <span class="goal-badge">
+                  <mat-icon>flag</mat-icon>
+                  {{ r.goal }}
+                </span>
+                <span class="duration-badge">
+                  <mat-icon>calendar_view_week</mat-icon>
+                  {{ r.durationWeeks }} week{{ r.durationWeeks === 1 ? '' : 's' }}
+                </span>
+              </div>
+            </div>
+            <div class="plan-date" *ngIf="r.createdAt">
+              <mat-icon>schedule</mat-icon>
+              <span>{{ r.createdAt | date:'mediumDate' }}</span>
+            </div>
+          </div>
+
+          <p class="plan-description">{{ r.description }}</p>
+
+          <div class="plan-actions">
+            <button mat-stroked-button class="exercise-toggle-button" type="button" (click)="toggleExercises(r.id)" [disabled]="isLoading || isBusy">
+              <mat-icon>{{ isExercisesExpanded(r.id) ? 'expand_less' : 'fitness_center' }}</mat-icon>
+              <span>{{ isExercisesExpanded(r.id) ? 'Hide Exercises' : 'View Exercises' }}</span>
+            </button>
+            <button mat-stroked-button class="edit-button" type="button" (click)="editWorkoutById(r.id)" [disabled]="isBusy">
+              <mat-icon>edit</mat-icon>
+              <span>Edit</span>
+            </button>
+            <button mat-stroked-button class="delete-button" type="button" (click)="deleteWorkoutById(r.id)" [disabled]="deletingWorkoutId === r.id || isBusy">
+              <mat-icon>{{ deletingWorkoutId === r.id ? 'hourglass_top' : 'delete_outline' }}</mat-icon>
+              <span>{{ deletingWorkoutId === r.id ? 'Deleting...' : 'Delete' }}</span>
+            </button>
+          </div>
+
+          <section class="exercise-section" *ngIf="isExercisesExpanded(r.id)">
+            <div class="exercise-section-head">
+              <div>
+                <h4 class="exercise-title">Exercises</h4>
+                <p class="exercise-subtitle">Manage exercises for this workout plan only.</p>
+              </div>
+              <button mat-stroked-button class="add-exercise-button" type="button" (click)="startAddExercise(r.id)" [disabled]="isExercisesLoading(r.id) || isBusy">
+                <mat-icon>add</mat-icon>
+                <span>Add Exercise</span>
+              </button>
+            </div>
+
+            <div *ngIf="isExercisesLoading(r.id)" class="exercise-loading">
+              <mat-spinner diameter="24"></mat-spinner>
+              <span>Loading exercises...</span>
+            </div>
+
+            <div *ngIf="!isExercisesLoading(r.id) && getExercisesForPlan(r.id).length === 0" class="exercise-empty">
+              <p>No exercises added yet for this plan.</p>
+            </div>
+
+            <div *ngIf="getExercisesForPlan(r.id).length > 0" class="exercise-list">
+              <article class="exercise-item" *ngFor="let exercise of getExercisesForPlan(r.id); trackBy: trackByExercise">
+                <div class="exercise-item-head">
+                  <strong>{{ exercise.exerciseName }}</strong>
+                  <span class="muscle-badge">{{ exercise.muscleGroup }}</span>
+                </div>
+                <p class="exercise-item-meta">{{ exercise.sets }} sets · {{ exercise.reps }} reps · {{ exercise.restSeconds }} sec rest</p>
+                <p class="exercise-item-notes" *ngIf="exercise.notes">{{ exercise.notes }}</p>
+                <div class="exercise-item-actions">
+                  <button mat-button type="button" (click)="editExercise(r.id, exercise)" [disabled]="deletingExerciseId !== null || isBusy">
+                    <mat-icon>edit</mat-icon>
+                    <span>Edit</span>
+                  </button>
+                  <button mat-button color="warn" type="button" (click)="deleteExercise(r.id, exercise)" [disabled]="deletingExerciseId === exercise.id || isBusy">
+                    <mat-icon>{{ deletingExerciseId === exercise.id ? 'hourglass_top' : 'delete' }}</mat-icon>
+                    <span>{{ deletingExerciseId === exercise.id ? 'Deleting...' : 'Delete' }}</span>
+                  </button>
+                </div>
+              </article>
+            </div>
+          </section>
+        </article>
+      </div>
+    </mat-card>
+  </div>
 </section>
