@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyFitCoach.API.Data;
 
@@ -11,9 +12,11 @@ using MyFitCoach.API.Data;
 namespace MyFitCoach.API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260625173302_AddWorkoutPlan")]
+    partial class AddWorkoutPlan
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -54,44 +57,6 @@ namespace MyFitCoach.API.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("MyFitCoach.API.Models.WorkoutExercise", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("ExerciseName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MuscleGroup")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Notes")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Reps")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("RestSeconds")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Sets")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WorkoutPlanId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("WorkoutPlanId");
-
-                    b.ToTable("WorkoutExercises");
-                });
-
             modelBuilder.Entity("MyFitCoach.Api.Models.WorkoutPlan", b =>
                 {
                     b.Property<int>("Id")
@@ -126,17 +91,6 @@ namespace MyFitCoach.API.Migrations
                     b.ToTable("WorkoutPlans");
                 });
 
-            modelBuilder.Entity("MyFitCoach.API.Models.WorkoutExercise", b =>
-                {
-                    b.HasOne("MyFitCoach.Api.Models.WorkoutPlan", "WorkoutPlan")
-                        .WithMany("Exercises")
-                        .HasForeignKey("WorkoutPlanId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("WorkoutPlan");
-                });
-
             modelBuilder.Entity("MyFitCoach.Api.Models.WorkoutPlan", b =>
                 {
                     b.HasOne("MyFitCoach.API.Models.User", "User")
@@ -151,11 +105,6 @@ namespace MyFitCoach.API.Migrations
             modelBuilder.Entity("MyFitCoach.API.Models.User", b =>
                 {
                     b.Navigation("WorkoutPlans");
-                });
-
-            modelBuilder.Entity("MyFitCoach.Api.Models.WorkoutPlan", b =>
-                {
-                    b.Navigation("Exercises");
                 });
 #pragma warning restore 612, 618
         }

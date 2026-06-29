@@ -1,4 +1,6 @@
-﻿namespace MyFitCoach.API.Models;
+﻿using MyFitCoach.Api.Models;
+
+namespace MyFitCoach.API.Models;
 
 public class User
 {
@@ -13,4 +15,7 @@ public class User
     public string Role { get; set; } = "User";
 
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+
+    public ICollection<WorkoutPlan> WorkoutPlans { get; set; } = new List<WorkoutPlan>();
+
 }
